@@ -1,4 +1,4 @@
-# Chat and Video chat code samples for ConnectyCube platform 
+# iOS Chat and Video chat code samples for ConnectyCube platform 
 
 This project contains [ConnectyCube](https://connectycube.com/) iOS code samples, that includes:
 
@@ -7,7 +7,7 @@ This project contains [ConnectyCube](https://connectycube.com/) iOS code samples
 
 ## Documentation
 
-All the samples use ConnectyCube SDK. The following tech integration documentation is available:
+All the samples use iOS ConnectyCube SDK. The following tech integration documentation is available:
 
 - [iOS SDK documentation](https://developers.connectycube.com/ios/)
 - [Chat API](https://developers.connectycube.com/ios/messaging)
