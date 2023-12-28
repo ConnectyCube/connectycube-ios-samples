@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6344CC872AD8656200883FFC /* StartCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6344CC862AD8656200883FFC /* StartCallViewController.swift */; };
+		636AFAD82AE0349400E8B210 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636AFAD72AE0349400E8B210 /* CallViewController.swift */; };
+		636AFADA2AE1E95F00E8B210 /* RTCSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636AFAD92AE1E95F00E8B210 /* RTCSessionManager.swift */; };
+		63C1DEC12AD5C62D00BA83F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C1DEC02AD5C62D00BA83F3 /* AppDelegate.swift */; };
+		63C1DEC32AD5C62D00BA83F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C1DEC22AD5C62D00BA83F3 /* SceneDelegate.swift */; };
+		63C1DEC82AD5C62D00BA83F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63C1DEC62AD5C62D00BA83F3 /* Main.storyboard */; };
+		63C1DECA2AD5C62F00BA83F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C1DEC92AD5C62F00BA83F3 /* Assets.xcassets */; };
+		63C1DECD2AD5C62F00BA83F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63C1DECB2AD5C62F00BA83F3 /* LaunchScreen.storyboard */; };
+		63C1DEDD2AD5EB1C00BA83F3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C1DEDC2AD5EB1C00BA83F3 /* LoginViewController.swift */; };
+		63F4B4412B3AF19C00AC6272 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F4B4402B3AF19C00AC6272 /* CollectionViewCell.swift */; };
+		8E1857B7FB51C2377EE5E396 /* Pods_SampleVideoChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE4D1867EB463D03D7AAF67 /* Pods_SampleVideoChat.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5FE4D1867EB463D03D7AAF67 /* Pods_SampleVideoChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleVideoChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6344CC862AD8656200883FFC /* StartCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCallViewController.swift; sourceTree = "<group>"; };
+		636AFAD72AE0349400E8B210 /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
+		636AFAD92AE1E95F00E8B210 /* RTCSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTCSessionManager.swift; sourceTree = "<group>"; };
+		637FFC1B2AE9223100340E02 /* ConnectyCube.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ConnectyCube.framework; path = ../../connectycube/build/bin/iosArm64/podDebugFramework/ConnectyCube.framework; sourceTree = "<group>"; };
+		637FFC1D2AE922BA00340E02 /* ConnectyCube.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ConnectyCube.framework; path = ../../connectycube/build/bin/iosX64/podDebugFramework/ConnectyCube.framework; sourceTree = "<group>"; };
+		63C1DEBD2AD5C62D00BA83F3 /* SampleVideoChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleVideoChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63C1DEC02AD5C62D00BA83F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		63C1DEC22AD5C62D00BA83F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		63C1DEC72AD5C62D00BA83F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		63C1DEC92AD5C62F00BA83F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		63C1DECC2AD5C62F00BA83F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		63C1DECE2AD5C62F00BA83F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63C1DEDC2AD5EB1C00BA83F3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		63F4B4402B3AF19C00AC6272 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		9F13F35D71195DCB8CF1B4F7 /* Pods-SampleVideoChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleVideoChat.debug.xcconfig"; path = "Target Support Files/Pods-SampleVideoChat/Pods-SampleVideoChat.debug.xcconfig"; sourceTree = "<group>"; };
+		E05B4BF3BC9DF90D8EFC3CA7 /* Pods-SampleVideoChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleVideoChat.release.xcconfig"; path = "Target Support Files/Pods-SampleVideoChat/Pods-SampleVideoChat.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		63C1DEBA2AD5C62D00BA83F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E1857B7FB51C2377EE5E396 /* Pods_SampleVideoChat.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		637FFC1A2AE9223100340E02 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				637FFC1D2AE922BA00340E02 /* ConnectyCube.framework */,
+				637FFC1B2AE9223100340E02 /* ConnectyCube.framework */,
+				5FE4D1867EB463D03D7AAF67 /* Pods_SampleVideoChat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		63C1DEB42AD5C62D00BA83F3 = {
+			isa = PBXGroup;
+			children = (
+				63C1DEBF2AD5C62D00BA83F3 /* SampleVideoChat */,
+				63C1DEBE2AD5C62D00BA83F3 /* Products */,
+				637FFC1A2AE9223100340E02 /* Frameworks */,
+				F481C04B0D9AF5B53884F125 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		63C1DEBE2AD5C62D00BA83F3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63C1DEBD2AD5C62D00BA83F3 /* SampleVideoChat.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		63C1DEBF2AD5C62D00BA83F3 /* SampleVideoChat */ = {
+			isa = PBXGroup;
+			children = (
+				63C1DEC02AD5C62D00BA83F3 /* AppDelegate.swift */,
+				63C1DEC22AD5C62D00BA83F3 /* SceneDelegate.swift */,
+				636AFAD72AE0349400E8B210 /* CallViewController.swift */,
+				6344CC862AD8656200883FFC /* StartCallViewController.swift */,
+				63C1DEDC2AD5EB1C00BA83F3 /* LoginViewController.swift */,
+				63C1DEC62AD5C62D00BA83F3 /* Main.storyboard */,
+				63F4B4402B3AF19C00AC6272 /* CollectionViewCell.swift */,
+				63C1DEC92AD5C62F00BA83F3 /* Assets.xcassets */,
+				63C1DECB2AD5C62F00BA83F3 /* LaunchScreen.storyboard */,
+				63C1DECE2AD5C62F00BA83F3 /* Info.plist */,
+				636AFAD92AE1E95F00E8B210 /* RTCSessionManager.swift */,
+			);
+			path = SampleVideoChat;
+			sourceTree = "<group>";
+		};
+		F481C04B0D9AF5B53884F125 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9F13F35D71195DCB8CF1B4F7 /* Pods-SampleVideoChat.debug.xcconfig */,
+				E05B4BF3BC9DF90D8EFC3CA7 /* Pods-SampleVideoChat.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		63C1DEBC2AD5C62D00BA83F3 /* SampleVideoChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63C1DED12AD5C62F00BA83F3 /* Build configuration list for PBXNativeTarget "SampleVideoChat" */;
+			buildPhases = (
+				09AE76F8DC1CB88B5692F632 /* [CP] Check Pods Manifest.lock */,
+				63C1DEB92AD5C62D00BA83F3 /* Sources */,
+				63C1DEBA2AD5C62D00BA83F3 /* Frameworks */,
+				63C1DEBB2AD5C62D00BA83F3 /* Resources */,
+				9178DFCBC7117D751B94BF68 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SampleVideoChat;
+			packageProductDependencies = (
+			);
+			productName = SampleVideoChat;
+			productReference = 63C1DEBD2AD5C62D00BA83F3 /* SampleVideoChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		63C1DEB52AD5C62D00BA83F3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					63C1DEBC2AD5C62D00BA83F3 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 63C1DEB82AD5C62D00BA83F3 /* Build configuration list for PBXProject "SampleVideoChat" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 63C1DEB42AD5C62D00BA83F3;
+			packageReferences = (
+			);
+			productRefGroup = 63C1DEBE2AD5C62D00BA83F3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				63C1DEBC2AD5C62D00BA83F3 /* SampleVideoChat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		63C1DEBB2AD5C62D00BA83F3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63C1DECD2AD5C62F00BA83F3 /* LaunchScreen.storyboard in Resources */,
+				63C1DECA2AD5C62F00BA83F3 /* Assets.xcassets in Resources */,
+				63C1DEC82AD5C62D00BA83F3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09AE76F8DC1CB88B5692F632 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SampleVideoChat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9178DFCBC7117D751B94BF68 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SampleVideoChat/Pods-SampleVideoChat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SampleVideoChat/Pods-SampleVideoChat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SampleVideoChat/Pods-SampleVideoChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		63C1DEB92AD5C62D00BA83F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63C1DEDD2AD5EB1C00BA83F3 /* LoginViewController.swift in Sources */,
+				6344CC872AD8656200883FFC /* StartCallViewController.swift in Sources */,
+				63F4B4412B3AF19C00AC6272 /* CollectionViewCell.swift in Sources */,
+				636AFADA2AE1E95F00E8B210 /* RTCSessionManager.swift in Sources */,
+				63C1DEC12AD5C62D00BA83F3 /* AppDelegate.swift in Sources */,
+				636AFAD82AE0349400E8B210 /* CallViewController.swift in Sources */,
+				63C1DEC32AD5C62D00BA83F3 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		63C1DEC62AD5C62D00BA83F3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				63C1DEC72AD5C62D00BA83F3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		63C1DECB2AD5C62F00BA83F3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				63C1DECC2AD5C62F00BA83F3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		63C1DECF2AD5C62F00BA83F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		63C1DED02AD5C62F00BA83F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		63C1DED22AD5C62F00BA83F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F13F35D71195DCB8CF1B4F7 /* Pods-SampleVideoChat.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SampleVideoChat/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Access to the camera is required.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Access to the microphone is required.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = connectycube.SampleVideoChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		63C1DED32AD5C62F00BA83F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E05B4BF3BC9DF90D8EFC3CA7 /* Pods-SampleVideoChat.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 938KB762V7;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SampleVideoChat/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Access to the camera is required.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Access to the microphone is required.";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = connectycube.SampleVideoChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		63C1DEB82AD5C62D00BA83F3 /* Build configuration list for PBXProject "SampleVideoChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63C1DECF2AD5C62F00BA83F3 /* Debug */,
+				63C1DED02AD5C62F00BA83F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63C1DED12AD5C62F00BA83F3 /* Build configuration list for PBXNativeTarget "SampleVideoChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63C1DED22AD5C62F00BA83F3 /* Debug */,
+				63C1DED32AD5C62F00BA83F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 63C1DEB52AD5C62D00BA83F3 /* Project object */;
+}
