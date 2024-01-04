@@ -1,18 +1,20 @@
-# iOS Chat and Video chat code samples for ConnectyCube platform 
+# Chat and Video Chat code samples for iOS, ConnectyCube
 
 This project contains [ConnectyCube](https://connectycube.com/) iOS code samples, that includes:
 
+* [Video Chat sample](https://github.com/ConnectyCube/connectycube-ios-samples/tree/master/SampleVideoChat)
 * Chat sample - coming soon ([Contact Us](https://connectycube.com/contact/) in a case of any questions)
-* Video Chat sample - coming soon ([Contact Us](https://connectycube.com/contact/) in a case of any questions)
+
 
 ## Documentation
 
 All the samples use iOS ConnectyCube SDK. The following tech integration documentation is available:
 
 - [iOS SDK documentation](https://developers.connectycube.com/ios/)
-- [Chat API](https://developers.connectycube.com/ios/messaging)
-- [Video Chat API](https://developers.connectycube.com/ios/videocalling)
 - [Authentication and Users](https://developers.connectycube.com/ios/authentication-and-users)
+- [Chat API](https://developers.connectycube.com/ios/messaging)
+- [P2P calling API](https://developers.connectycube.com/ios/videocalling)
+- [Push Notifications API](https://developers.connectycube.com/ios/push-notifications)
 
 ## Have an issue?
 
