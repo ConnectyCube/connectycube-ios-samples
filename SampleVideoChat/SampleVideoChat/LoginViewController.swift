@@ -67,7 +67,16 @@ class LoginViewController: UIViewController {
             navigateToStartCall(currentUser: user, usersToSelect: usersToSelect)
         }, errorCallback: { error in
             NSLog("chat login error= " + error.description())
+            self.showErrorAlert("Chat login error", error.message ?? "")
+            self.spinner.stopAnimating()
+            self.view.isUserInteractionEnabled = true
         }, resource: ConnectycubeSettings().chatDefaultResource)
+    }
+    
+    func showErrorAlert(_ title: String, _ msg: String) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func navigateToStartCall(currentUser: ConnectycubeUser, usersToSelect: Array<ConnectycubeUser> = []) {
@@ -86,7 +95,14 @@ extension LoginViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        checkCredentials()
         loginToChat(user: users[indexPath.section], usersToSelect: users.filter{$0 != users[indexPath.section]})
+    }
+    
+    func checkCredentials() {
+        if(APP_ID.isEmpty || AUTH_KEY.isEmpty || AUTH_SECRET.isEmpty) {
+            assertionFailure("The LoginViewController should contain ConnectyCube credentials")
+        }
     }
 }
 
