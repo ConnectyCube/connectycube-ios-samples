@@ -46,7 +46,7 @@ All the samples use iOS ConnectyCube SDK. The following tech integration documen
 	    $0.password = ""
 	    $0.id = 
 	}
-```
+        ```
  
 6. Run the sample
 
