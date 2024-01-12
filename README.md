@@ -6,7 +6,7 @@ This project contains [ConnectyCube](https://connectycube.com/) iOS code samples
 
 * [Video Chat sample](https://github.com/ConnectyCube/connectycube-ios-samples/tree/master/SampleVideoChat)
 
-<kbd><img alt="React Native video chat code sample, login" src="https://developers.connectycube.com/docs/_images/code_samples/ios/ios_codesample_video_login.PNG" width="200" /></kbd> <kbd><img alt="React Native video chat code sample, select users" src="https://developers.connectycube.com/docs/_images/code_samples/ios/ios_codesample_video_select_users.PNG" width="200" /></kbd> <kbd><img alt="React Native video chat code sample, video chat" src="https://developers.connectycube.com/docs/_images/code_samples/ios/ios_codesample_video_video.PNG" width="200" /></kbd>
+<kbd><img alt="iOS video chat code sample, login" src="https://developers.connectycube.com/docs/_images/code_samples/ios/ios_codesample_video_login.PNG" width="200" /></kbd> <kbd><img alt="iOS video chat code sample, select users" src="https://developers.connectycube.com/docs/_images/code_samples/ios/ios_codesample_video_select_users.PNG" width="200" /></kbd> <kbd><img alt="iOS video chat code sample, video chat" src="https://developers.connectycube.com/docs/_images/code_samples/ios/ios_codesample_video_video.PNG" width="200" /></kbd>
 
 * Chat sample - coming soon ([Contact Us](https://connectycube.com/contact/) in a case of any questions)
 
