@@ -15,6 +15,10 @@ All the samples use iOS ConnectyCube SDK. The following tech integration documen
 - [ConnectyCube iOS SDK getting started](https://developers.connectycube.com/ios/)
 - [ConnectyCube Video Chat API documentation](https://developers.connectycube.com/ios/videocalling)
 
+## Screenshots
+
+<kbd><img alt="iOS video chat code sample, login" src="https://developers.connectycube.com/docs/_images/code_samples/ios/ios_codesample_video_login.PNG" width="200" /></kbd> <kbd><img alt="iOS video chat code sample, select users" src="https://developers.connectycube.com/docs/_images/code_samples/ios/ios_codesample_video_select_users.PNG" width="200" /></kbd> <kbd><img alt="iOS video chat code sample, video chat" src="https://developers.connectycube.com/docs/_images/code_samples/ios/ios_codesample_video_video.PNG" width="200" /></kbd>
+
 ## Getting Started
 
 1. Clone the project
@@ -42,8 +46,7 @@ All the samples use iOS ConnectyCube SDK. The following tech integration documen
 	    $0.password = ""
 	    $0.id = 
 	}
-```
- 
+
 6. Run the sample
 
 ## Can't build yourself?
