@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630EC2942C10D3DA00202A98 /* AttachmentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630EC2932C10D3DA00202A98 /* AttachmentItem.swift */; };
+		630EC2962C10E39000202A98 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630EC2952C10E39000202A98 /* Sender.swift */; };
+		630EC2982C10E3DB00202A98 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630EC2972C10E3DB00202A98 /* Message.swift */; };
+		630EC29B2C10E4D000202A98 /* Number+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630EC29A2C10E4D000202A98 /* Number+Additions.swift */; };
+		630EC29F2C11020F00202A98 /* Connectycube+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630EC29E2C11020F00202A98 /* Connectycube+Additions.swift */; };
+		630EC2A12C11025B00202A98 /* UIImageView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630EC2A02C11025B00202A98 /* UIImageView+Additions.swift */; };
+		630EC2A32C1102B300202A98 /* UINavigation+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630EC2A22C1102B300202A98 /* UINavigation+Additions.swift */; };
 		63B8B5262BDD8E5500290EE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8B5252BDD8E5500290EE9 /* AppDelegate.swift */; };
 		63B8B5282BDD8E5500290EE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8B5272BDD8E5500290EE9 /* SceneDelegate.swift */; };
 		63B8B52D2BDD8E5500290EE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63B8B52B2BDD8E5500290EE9 /* Main.storyboard */; };
@@ -30,6 +37,13 @@
 
 /* Begin PBXFileReference section */
 		12D9DF57B57DA65717DE9690 /* Pods_SampleChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		630EC2932C10D3DA00202A98 /* AttachmentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentItem.swift; sourceTree = "<group>"; };
+		630EC2952C10E39000202A98 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		630EC2972C10E3DB00202A98 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		630EC29A2C10E4D000202A98 /* Number+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Additions.swift"; sourceTree = "<group>"; };
+		630EC29E2C11020F00202A98 /* Connectycube+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Connectycube+Additions.swift"; sourceTree = "<group>"; };
+		630EC2A02C11025B00202A98 /* UIImageView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Additions.swift"; sourceTree = "<group>"; };
+		630EC2A22C1102B300202A98 /* UINavigation+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigation+Additions.swift"; sourceTree = "<group>"; };
 		63B8B5222BDD8E5400290EE9 /* SampleChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63B8B5252BDD8E5500290EE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63B8B5272BDD8E5500290EE9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +80,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		630EC2922C10D3BB00202A98 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				630EC2932C10D3DA00202A98 /* AttachmentItem.swift */,
+				630EC2952C10E39000202A98 /* Sender.swift */,
+				630EC2972C10E3DB00202A98 /* Message.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		630EC2992C10E4B400202A98 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				63B8B5572C07BD4C00290EE9 /* AlertBuilder.swift */,
+				63B8B54D2BF7F58500290EE9 /* DialogDateFormatter.swift */,
+				63B8B5452BEE817E00290EE9 /* UserDefaultsManager.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		630EC29D2C1101C800202A98 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				630EC29A2C10E4D000202A98 /* Number+Additions.swift */,
+				630EC2A22C1102B300202A98 /* UINavigation+Additions.swift */,
+				630EC2A02C11025B00202A98 /* UIImageView+Additions.swift */,
+				630EC29E2C11020F00202A98 /* Connectycube+Additions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		630EC2A42C11050300202A98 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				63B8B5492BF65CE700290EE9 /* DialogViewCell.swift */,
+				63B8B5552C06041400290EE9 /* UserViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		63B8B5192BDD8E5400290EE9 = {
 			isa = PBXGroup;
 			children = (
@@ -87,23 +141,22 @@
 		63B8B5242BDD8E5500290EE9 /* SampleChat */ = {
 			isa = PBXGroup;
 			children = (
+				630EC29D2C1101C800202A98 /* Extensions */,
+				630EC2992C10E4B400202A98 /* Common */,
+				630EC2922C10D3BB00202A98 /* Models */,
+				630EC2A42C11050300202A98 /* Views */,
 				63B8B5252BDD8E5500290EE9 /* AppDelegate.swift */,
 				63B8B5272BDD8E5500290EE9 /* SceneDelegate.swift */,
-				63B8B5392BE046E900290EE9 /* LoginViewController.swift */,
-				63B8B53B2BE974F700290EE9 /* DialogViewController.swift */,
 				63B8B53D2BE9774900290EE9 /* ChatViewController.swift */,
-				63B8B5512BFBE8F000290EE9 /* UserViewController.swift */,
 				63B8B5532C02183500290EE9 /* CreateDialogViewController.swift */,
+				63B8B53B2BE974F700290EE9 /* DialogViewController.swift */,
+				63B8B5392BE046E900290EE9 /* LoginViewController.swift */,
+				63B8B5512BFBE8F000290EE9 /* UserViewController.swift */,
 				63B8B52B2BDD8E5500290EE9 /* Main.storyboard */,
 				63B8B52E2BDD8E5600290EE9 /* Assets.xcassets */,
+				63B8B54A2BF65CE700290EE9 /* DialogViewCell.xib */,
 				63B8B5302BDD8E5600290EE9 /* LaunchScreen.storyboard */,
 				63B8B5332BDD8E5600290EE9 /* Info.plist */,
-				63B8B54D2BF7F58500290EE9 /* DialogDateFormatter.swift */,
-				63B8B5452BEE817E00290EE9 /* UserDefaultsManager.swift */,
-				63B8B5492BF65CE700290EE9 /* DialogViewCell.swift */,
-				63B8B54A2BF65CE700290EE9 /* DialogViewCell.xib */,
-				63B8B5552C06041400290EE9 /* UserViewCell.swift */,
-				63B8B5572C07BD4C00290EE9 /* AlertBuilder.swift */,
 			);
 			path = SampleChat;
 			sourceTree = "<group>";
@@ -250,16 +303,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				63B8B5582C07BD4C00290EE9 /* AlertBuilder.swift in Sources */,
+				630EC2942C10D3DA00202A98 /* AttachmentItem.swift in Sources */,
 				63B8B53A2BE046E900290EE9 /* LoginViewController.swift in Sources */,
 				63B8B5522BFBE8F000290EE9 /* UserViewController.swift in Sources */,
+				630EC29F2C11020F00202A98 /* Connectycube+Additions.swift in Sources */,
 				63B8B5562C06041400290EE9 /* UserViewCell.swift in Sources */,
 				63B8B53C2BE974F700290EE9 /* DialogViewController.swift in Sources */,
 				63B8B5462BEE817E00290EE9 /* UserDefaultsManager.swift in Sources */,
 				63B8B5262BDD8E5500290EE9 /* AppDelegate.swift in Sources */,
+				630EC2962C10E39000202A98 /* Sender.swift in Sources */,
+				630EC2A32C1102B300202A98 /* UINavigation+Additions.swift in Sources */,
 				63B8B54E2BF7F58500290EE9 /* DialogDateFormatter.swift in Sources */,
 				63B8B54B2BF65CE700290EE9 /* DialogViewCell.swift in Sources */,
+				630EC29B2C10E4D000202A98 /* Number+Additions.swift in Sources */,
 				63B8B5542C02183500290EE9 /* CreateDialogViewController.swift in Sources */,
+				630EC2982C10E3DB00202A98 /* Message.swift in Sources */,
 				63B8B53E2BE9774900290EE9 /* ChatViewController.swift in Sources */,
+				630EC2A12C11025B00202A98 /* UIImageView+Additions.swift in Sources */,
 				63B8B5282BDD8E5500290EE9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

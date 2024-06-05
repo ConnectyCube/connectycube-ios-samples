@@ -6,14 +6,23 @@
 //
 
 import UIKit
+import ConnectyCube
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    let APP_ID = ""
+    let AUTH_KEY = ""
+    let AUTH_SECRET = ""
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        ConnectyCube().doInit(applicationId: APP_ID, authorizationKey: AUTH_KEY, authorizationSecret: AUTH_SECRET, connectycubeConfig: nil)
+        ConnectycubeSettings().isDebugEnabled = true
+        ConnectyCube().chat.enableLogging()
+        
+        IQKeyboardManager.shared.enable = true
         return true
     }
 

@@ -32,8 +32,6 @@ class DialogViewController: UIViewController, UITableViewDelegate, UITableViewDa
         dialogsTable.register(DialogViewCell.nib(), forCellReuseIdentifier: DialogViewCell.identifier)
         dialogsTable.delegate = self
         dialogsTable.dataSource = self
-
-//        navigationItem.prompt = "Dialogs"
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: " Logout", style: .plain, target: self, action: #selector(action))
     }
@@ -81,8 +79,8 @@ class DialogViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.messageLabel.text = dialog.lastMessage
         
         var lastMessageDateSent = dialog.lastMessageDateSent
-        if (lastMessageDateSent == nil) {            
-            lastMessageDateSent = KotlinLong(integerLiteral: DialogDateFormatter.shared.toTimeStamp(dateString: dialog.createdAt!))
+        if (lastMessageDateSent == nil) {
+            lastMessageDateSent = DialogDateFormatter.shared.toTimeStamp(dateString: dialog.createdAt!).asXPLong()
         }
              
         cell.dateLabel.text = DialogDateFormatter.shared.toString(dateInt: Int(truncating: lastMessageDateSent!))
@@ -103,45 +101,5 @@ class DialogViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //show messages
         let dialog: ConnectycubeDialog = dialogs[indexPath.row] as ConnectycubeDialog
         ChatViewController.navigateTo(self, dialog)
-    }
-}
-
-extension UIImageView {
-    func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else { return }
-                DispatchQueue.main.async() { [weak self] in
-                    self?.image = image
-                }
-        }.resume()
-    }
-    func downloaded(from link: String, placeholder: UIImage, contentMode mode: ContentMode = .scaleToFill) {
-        guard let url = URL(string: link) else {
-            self.image = placeholder
-            return
-        }
-        downloaded(from: url, contentMode: mode)
-    }
-    
-    func downloadedFile(from url: URL) {
-        do {
-            let data = try Data(contentsOf: url)
-            self.image = UIImage(data: data)
-        } catch {
-        }
-    }
-    
-    func downloaded(from url: URL) {
-        if url.isFileURL {
-            downloadedFile(from: url)
-        } else {
-            downloaded(from: url, contentMode: .scaleAspectFit)
-        }
     }
 }

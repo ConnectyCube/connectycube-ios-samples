@@ -88,7 +88,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
     
     func initOcuppants() async throws {
-        let ids = Set(currentDialog!.occupantsIds as! [KotlinInt])
+        let ids = Set(currentDialog!.occupantsIds!.asXPIntArray())
         let users = try await ConnectyCube().getUsersByIds(ids: ids, pagination: nil, sorter: nil).items as! [ConnectycubeUser]
         users.forEach { user in
             occupants[user.id] = user
@@ -309,7 +309,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         return 10
-        
     }
     
     func cellBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
@@ -415,9 +414,9 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     
     func buildTempMsg(_ data: [Any]) -> ConnectycubeMessage {
         let msg: ConnectycubeMessage = ConnectycubeMessage()
-        msg.dateSent = Int32(Date().timeIntervalSince1970).toKotlinLong()
+        msg.dateSent = Int32(Date().timeIntervalSince1970).asXPLong()
         msg.dialogId = currentDialog?.dialogId
-        msg.senderId = ConnectycubeSessionManager().activeSession!.user!.id.toKotlinInt()
+        msg.senderId = ConnectycubeSessionManager().activeSession!.user!.id.asXPInt()
         
         if(data.isEmpty && !attachmentManager.attachments.isEmpty) {
             let attachment = attachmentManager.attachments.first
@@ -473,9 +472,9 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     
     func buildCubeMsg(tempMsg: ConnectycubeMessage) async throws -> ConnectycubeMessage {
         let msg: ConnectycubeMessage = ConnectycubeMessage()
-        msg.dateSent = Int32(Date().timeIntervalSince1970).toKotlinLong()
+        msg.dateSent = Int32(Date().timeIntervalSince1970).asXPLong()
         msg.dialogId = tempMsg.dialogId
-        if(currentDialog!.type == ConnectycubeDialogType.companion.PRIVATE) { msg.recipientId = currentDialog!.getRecipientId().toKotlinInt() }
+        if(currentDialog!.type == ConnectycubeDialogType.companion.PRIVATE) { msg.recipientId = currentDialog!.getRecipientId().asXPInt() }
         else { msg.type = ConnectycubeMessageType.groupchat }
         msg.body = tempMsg.body
         if(tempMsg.attachments!.count > 0) {
@@ -517,148 +516,6 @@ extension ChatViewController: MessageCellDelegate {
     
     func didTapPlayButton(in cell: AudioMessageCell) {
         print("Play Button tapped")
-    }
-}
-
-extension ConnectycubeMessage {
-    private func formatOccupantsIds(_ currentSender: SenderType, _ chatDialog: ConnectycubeDialog) -> [Int] {
-        var occupantsIds: [Int] = chatDialog.occupantsIds! as! [Int]
-        occupantsIds.remove(at: occupantsIds.firstIndex(of: Int(currentSender.senderId)!)!)
-        return occupantsIds
-    }
-    
-    func isRead(_ currentSender: SenderType, _ chatDialog: ConnectycubeDialog) -> Bool {
-       // return self.readIds != nil && self.readIds!.contains(currentSender.senderId)// for incoming
-        if(chatDialog.type == ConnectycubeDialogType.companion.PRIVATE) {
-            return (self.readIds?.contains(self.recipientId!)) != nil
-        }
-        return self.readIds != nil && (self.readIds! as! [Int]).any(formatOccupantsIds(currentSender, chatDialog))
-    }
-    
-    func isDelivered(_ currentSender: SenderType, _ chatDialog: ConnectycubeDialog) -> Bool {
-        if(chatDialog.type == ConnectycubeDialogType.companion.PRIVATE) {
-            return (self.deliveredIds?.contains(self.recipientId!)) != nil
-        }
-        return self.deliveredIds != nil && (self.deliveredIds! as! [Int]).any(formatOccupantsIds(currentSender, chatDialog))
-    }
-    
-    func isSent(_ currentSender: SenderType) -> Bool {
-        return self.deliveredIds != nil && self.deliveredIds!.contains(currentSender.senderId)
-    }
-
-    func toMessage(_ currentSender: SenderType, _ dialog: ConnectycubeDialog, _ occupants: [Int32: ConnectycubeUser]) -> Message {
-        
-        let sender: SenderType
-        if(self.senderId == Int32(currentSender.senderId)?.toKotlinInt()) {
-            sender = currentSender
-        } else {
-            let displayName: String? = occupants[self.senderId as! Int32]?.fullName ?? occupants[self.senderId as! Int32]?.login!
-            sender = Sender(senderId: self.senderId!.stringValue, displayName: displayName ?? "Not from app")
-        }
-
-        let status: String = {
-            if isRead(currentSender, dialog) {
-                return "Read"
-            } else if (isDelivered(currentSender, dialog)) {
-                return "Delivered"
-            } else if (isSent(currentSender)) {
-                return "Sent"
-            } else {
-                return "Empty"
-            }
-        }()
-        let kind: MessageKind
-        let attachments:[ConnectycubeAttachment]? = self.attachments?.mutableCopy() as? [ConnectycubeAttachment]
-        if(attachments != nil && !attachments!.isEmpty) {
-            let mediaItem: AttachmentItem = AttachmentItem(connectycubeAttachment: (attachments?.first)!)
-            kind = .photo(mediaItem)
-        } else {
-            kind = .text(self.body!)
-        }
-        
-        return Message(sender: sender,
-                       messageId: self.messageId!,
-                       sentDate: Date(timeIntervalSince1970: TimeInterval(truncating: self.dateSent!)),
-                       kind: kind,
-                       status: status)
-    }
-}
-
-extension Int32 {
-    /// returns Integer equivalent of this instance.
-    /// created as a shorthand to avoid casting to Int.
-    func asInt() -> Int {
-        return Int(self)
-    }
-}
-
-extension Int32 {
-    /// converts this Integer to KotlinInt
-    func toKotlinInt() -> KotlinInt {
-        return KotlinInt(integerLiteral: Int(self))
-    }
-}
-
-extension Int32 {
-    /// converts this Integer to KotlinInt
-    func toKotlinLong() -> KotlinLong {
-        return KotlinLong(integerLiteral: Int(self))
-    }
-}
-
-extension Array where Element == Int {
-    /// Returns true if at least one element matches the given predicate.
-    func any(_ array: [Int]) -> Bool {
-        return self.contains{ array.contains($0)}
-    }
-}
-
-
-struct Sender: SenderType {
-    var senderId: String
-    
-    var displayName: String
-}
-
-struct Message: MessageType {
-    var sender: SenderType
-    var messageId: String
-    var sentDate: Date
-    var kind: MessageKind
-    var status: String
-    
-    var description: String {
-        return "sender: \(sender), messageId: \(messageId), sentDate: \(sentDate), kind: \(kind), status: \(status)"
-    }
-}
-
-extension UINavigationController {
-  func popToViewController(ofClass: AnyClass, animated: Bool = true) {
-    if let vc = viewControllers.last(where: { $0.isKind(of: ofClass) }) {
-      popToViewController(vc, animated: animated)
-    }
-  }
-}
-
-class AttachmentItem: MediaItem {
-    var url: URL?
-    var image: UIImage?
-    var placeholderImage: UIImage
-    var size: CGSize
-    
-    init(connectycubeAttachment: ConnectycubeAttachment) {
-        if (connectycubeAttachment.url!.hasPrefix("https")) {
-            self.url = URL(string: connectycubeAttachment.url!)
-        } else {
-            self.url = URL.init(fileURLWithPath: connectycubeAttachment.url!)
-        }
-       
-        if (connectycubeAttachment.width != 0 && connectycubeAttachment.height != 0) {
-            size = CGSize(width: Int(connectycubeAttachment.width), height: Int(connectycubeAttachment.height))
-        } else {
-            self.size = CGSize(width: 240, height: 240)
-        }
-        self.placeholderImage = UIImage()
     }
 }
 

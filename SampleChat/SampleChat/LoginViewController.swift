@@ -7,13 +7,8 @@
 
 import UIKit
 import ConnectyCube
-import IQKeyboardManagerSwift
 
 class LoginViewController: UIViewController {
-    
-    let APP_ID = ""
-    let AUTH_KEY = ""
-    let AUTH_SECRET = ""
     
     @IBOutlet weak var loginTextView: UITextField!
     
@@ -29,12 +24,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ConnectyCube().doInit(applicationId: APP_ID, authorizationKey: AUTH_KEY, authorizationSecret: AUTH_SECRET, connectycubeConfig: nil)
-        ConnectycubeSettings().isDebugEnabled = true
-        ConnectyCube().chat.enableLogging()
-
         spinner.hidesWhenStopped = true
-        IQKeyboardManager.shared.enable = true
         
         makeLogin()
     }

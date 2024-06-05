@@ -112,12 +112,10 @@ class CreateDialogViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func createDialog() {
-        
         let dialog = ConnectycubeDialog()
         dialog.type = ConnectycubeDialogType.companion.GROUP
         dialog.occupantsIds = ((selectedUsers.map{$0.id} as NSArray).mutableCopy() as! NSMutableArray)
         dialog.name = dialogNameLabel.text
-        
 
         Task.init {
             do {
@@ -134,5 +132,4 @@ class CreateDialogViewController: UIViewController, UICollectionViewDelegate, UI
             }
         }
     }
-    
 }
