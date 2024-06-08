@@ -38,7 +38,7 @@ class DialogViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadDialogs()//FIXME check RP
+        loadDialogs()
     }
     
     @objc func action (sender:UIButton) {

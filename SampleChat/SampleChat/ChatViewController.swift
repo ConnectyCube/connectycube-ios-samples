@@ -15,6 +15,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     static func navigateTo(_ controller: UIViewController, _ dialog: ConnectycubeDialog) {
         let vc = ChatViewController(dialog)
         vc.title = "Chat"
+        vc.navigationItem.prompt = dialog.name
         controller.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -63,7 +64,8 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Dialogs", style: .plain, target: self, action: #selector(backToDialogs))
-        
+
+        initTitleChatBtn()
         initResources()
         configureAvatarView()
         configureMessageCollectionView()
@@ -74,6 +76,32 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     @objc func backToDialogs() {
         self.navigationController?.popToViewController(ofClass: DialogViewController.self)
+    }
+    
+    @objc func navigateToChatInfo() {
+        if currentDialog!.type == ConnectycubeDialogType.companion.PRIVATE {
+            print("UserProfileViewController")
+        } else {
+            let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChatDetailsViewController") as? ChatDetailsViewController
+            vc?.title = "Chat details"
+            vc?.currentDialog = currentDialog!
+            vc?.loadedUsers = Array(occupants.values)
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
+    
+    func initTitleChatBtn() {        
+        let containerView = UIControl(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
+        containerView.addTarget(self, action: #selector(navigateToChatInfo), for: .touchUpInside)
+        let imageView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
+        imageView.layer.masksToBounds = false
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2
+        imageView.clipsToBounds = true
+        imageView.downloaded(from: currentDialog!.photo ?? "", placeholder: UIImage(named: "avatar_placeholder_group")!)
+        containerView.addSubview(imageView)
+        let buttonItem = UIBarButtonItem(customView: containerView)
+        buttonItem.width = 30
+        navigationItem.rightBarButtonItem = buttonItem
     }
     
     func initResources() {
@@ -130,7 +158,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     @objc func attachmentPressed() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = .savedPhotosAlbum
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -421,8 +449,11 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         if(data.isEmpty && !attachmentManager.attachments.isEmpty) {
             let attachment = attachmentManager.attachments.first
             if case .image(let i) = attachment {
-                let cubeAttachment: ConnectycubeAttachment = createTempAttachment(path: attachmentData[i]!.path, type: "image")
-                msg.attachments?.add(cubeAttachment)
+                if let imageData = i.jpeg(.lowest) {
+                    let image = UIImage(data: imageData)
+                }
+//                let cubeAttachment: ConnectycubeAttachment = createTempAttachment(path: attachmentData[i]!.path, type: "image")
+//                msg.attachments?.add(cubeAttachment)
                 msg.body = "Attachment"
             }
         }

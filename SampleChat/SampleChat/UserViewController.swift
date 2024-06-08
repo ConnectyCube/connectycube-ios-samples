@@ -58,24 +58,13 @@ class UserViewController: UIViewController, UISearchBarDelegate, UITableViewDele
         if(searchBar.text?.count ?? 1 <= 3) {
             AlertBuilder.showErrorAlert(self, "Error", "Enter more than 3 charactes")
         } else {
-            loadUsers(username: searchBar.text!)
+            loadUsers(username: searchBar.text!, function:{ [self] (users) -> Void in
+                loadedUsers.removeAll()
+                selectedUsers.removeAll()
+                loadedUsers.append(contentsOf: users)
+                usersTable.reloadData()
+            })
         }
-    }
-    
-    func configureAvatar(_ imageView: UIImageView, link: String) {
-        let itemSize = CGSizeMake(35, 35)
-        imageView.image = UIImage(systemName: "person")
-   
-        UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale)
-        let imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height)
-        imageView.image!.draw(in: imageRect)
-        imageView.image! = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-
-        imageView.layer.cornerRadius = (itemSize.width) / 2
-        imageView.clipsToBounds = true
-        
-        imageView.downloaded(from: link, placeholder: UIImage(systemName: "person")!)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,7 +75,7 @@ class UserViewController: UIViewController, UISearchBarDelegate, UITableViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
         let user = loadedUsers[indexPath.row]
         cell.textLabel!.text = user.fullName
-        configureAvatar(cell.imageView!, link: user.avatar ?? "")
+        cell.imageView!.configureAvatar(link: user.avatar ?? "")
         if(isPrivateChat) {
             cell.accessoryType = .disclosureIndicator
         } else {
@@ -112,18 +101,6 @@ class UserViewController: UIViewController, UISearchBarDelegate, UITableViewDele
             checkBtn.isHidden = selectedUsers.isEmpty
         }
         usersTable.reloadData()
-    }
-    
-    func loadUsers(username: String) {
-        ConnectyCube().getUsersByFullName(fullName: username, pagination: nil, sorter: nil, successCallback: { [self] result in
-            loadedUsers.removeAll()
-            selectedUsers.removeAll()
-            let users = (result.items as! [ConnectycubeUser]).filter{$0.id != UserDefaultsManager.shared.getCurrentUser().id}
-            loadedUsers.append(contentsOf: users)
-            usersTable.reloadData()
-        }, errorCallback: { error in
-            NSLog("loadUsers error " + error.description())
-        })
     }
     
     func actionCreateDialog(_ isPrivate: Bool) {

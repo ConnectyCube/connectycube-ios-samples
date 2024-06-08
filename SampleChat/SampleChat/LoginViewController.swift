@@ -33,8 +33,8 @@ class LoginViewController: UIViewController {
         let user = ConnectycubeUser()
         user.login = loginTextView.text
         user.password = pswTextView.text
-        spinner.startAnimating()
-        view.isUserInteractionEnabled = false
+        
+        stopInteraction(spinner, view)
         if(signInUpBtn.isSelected) {
             NSLog("Sign up")
             signUp(user)
@@ -103,10 +103,9 @@ class LoginViewController: UIViewController {
 
     func loginToChat(_ user: ConnectycubeUser) {
         print("loginToChat on \(Thread.current)")
-        ConnectyCube().chat.login(user: user, successCallback:{
+        ConnectyCube().chat.login(user: user, successCallback:{ [self] in
             NSLog("chat login success")
-            self.spinner.stopAnimating()
-            self.view.isUserInteractionEnabled = true
+            startInteraction(spinner, view)
             self.navigateToDialogs()
         }, errorCallback: { error in
             NSLog("chat login error= " + error.description())
