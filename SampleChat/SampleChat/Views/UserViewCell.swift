@@ -9,11 +9,11 @@ import UIKit
 
 class UserViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var avatarImage: UIImageView! {
+    @IBOutlet weak var avatarImageView: UIImageView! {
         didSet {
-            avatarImage.layer.masksToBounds = false
-            avatarImage.layer.cornerRadius = avatarImage.frame.height / 2
-            avatarImage.clipsToBounds = true
+            avatarImageView.layer.masksToBounds = false
+            avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+            avatarImageView.clipsToBounds = true
         }
     }
     

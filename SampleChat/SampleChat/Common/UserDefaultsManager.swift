@@ -38,4 +38,10 @@ class UserDefaultsManager{
     func currentUserExists() -> Bool {
         return UserDefaults.standard.string(forKey: userLogin) != nil
     }
+    
+    func removeCurrentUser() {
+        UserDefaults.standard.removeObject(forKey:userLogin)
+        UserDefaults.standard.removeObject(forKey:userPsw)
+        UserDefaults.standard.removeObject(forKey:userId)
+    }
 }

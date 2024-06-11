@@ -307,7 +307,7 @@
                                             </subviews>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="avatarImage" destination="8n0-FK-lfZ" id="kQN-u9-fCX"/>
+                                            <outlet property="avatarImageView" destination="8n0-FK-lfZ" id="kQN-u9-fCX"/>
                                             <outlet property="userLable" destination="Rki-Z0-KEv" id="bAJ-j9-p7l"/>
                                         </connections>
                                     </collectionViewCell>
@@ -501,9 +501,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="WpS-If-9ov" userLabel="Spinner">
-                                <rect key="frame" x="186" y="297" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="WpS-If-9ov" userLabel="Spinner">
+                                <rect key="frame" x="186.66666666666666" y="181.66666666666666" width="20" height="20"/>
                             </activityIndicatorView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VBb-zi-jux" userLabel="Avatar Image View">
+                                <rect key="frame" x="161.66666666666666" y="301.66666666666669" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="6Bi-QF-Ykp"/>
+                                    <constraint firstAttribute="height" constant="70" id="JoF-f4-5cW"/>
+                                </constraints>
+                            </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tDf-gG-qnb" userLabel="User Name">
                                 <rect key="frame" x="148" y="409" width="97" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -524,13 +531,15 @@
                             <constraint firstItem="WpS-If-9ov" firstAttribute="centerX" secondItem="Rh9-Xa-JPs" secondAttribute="centerX" id="51J-bA-RFD"/>
                             <constraint firstItem="tDf-gG-qnb" firstAttribute="centerX" secondItem="Rh9-Xa-JPs" secondAttribute="centerX" id="RMf-Sm-e8C"/>
                             <constraint firstItem="tDf-gG-qnb" firstAttribute="centerY" secondItem="Rh9-Xa-JPs" secondAttribute="centerY" id="TWE-dj-tIO"/>
-                            <constraint firstItem="tDf-gG-qnb" firstAttribute="firstBaseline" secondItem="WpS-If-9ov" secondAttribute="baseline" constant="100" id="bqf-K5-37N"/>
+                            <constraint firstItem="tDf-gG-qnb" firstAttribute="top" secondItem="VBb-zi-jux" secondAttribute="bottom" constant="50" id="Uog-MG-E4Y"/>
+                            <constraint firstItem="VBb-zi-jux" firstAttribute="centerX" secondItem="Rh9-Xa-JPs" secondAttribute="centerX" id="fAH-mB-Tng"/>
                             <constraint firstItem="vLs-sF-O8W" firstAttribute="centerX" secondItem="Rh9-Xa-JPs" secondAttribute="centerX" id="gWQ-LL-dOM"/>
                             <constraint firstItem="vLs-sF-O8W" firstAttribute="top" secondItem="tDf-gG-qnb" secondAttribute="top" constant="100" id="n4v-0B-uSN"/>
+                            <constraint firstItem="VBb-zi-jux" firstAttribute="top" secondItem="WpS-If-9ov" secondAttribute="bottom" constant="100" id="wvX-eo-YA3"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="chatBtn" destination="vLs-sF-O8W" id="YOB-Pb-6wj"/>
+                        <outlet property="avatarImageView" destination="VBb-zi-jux" id="HPJ-6R-cjT"/>
                         <outlet property="spinner" destination="WpS-If-9ov" id="cw0-lI-He7"/>
                         <outlet property="userNameLabel" destination="tDf-gG-qnb" id="2hu-Qd-6J8"/>
                     </connections>

@@ -159,10 +159,7 @@ class ChatDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
-        vc?.title = "User Profile"
-        vc?.user = loadedUsers[indexPath.row]
-        self.navigationController?.pushViewController(vc!, animated: true)
+        UserProfileViewController.navigateTo(self, loadedUsers[indexPath.row])
     }
     
     func canBeUpdated() -> Bool {

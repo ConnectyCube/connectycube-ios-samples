@@ -14,8 +14,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     static func navigateTo(_ controller: UIViewController, _ dialog: ConnectycubeDialog) {
         let vc = ChatViewController(dialog)
-        vc.title = "Chat"
-        vc.navigationItem.prompt = dialog.name
+        vc.navigationItem.title = dialog.name
         controller.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -80,7 +79,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     @objc func navigateToChatInfo() {
         if currentDialog!.type == ConnectycubeDialogType.companion.PRIVATE {
-            print("UserProfileViewController")
+            UserProfileViewController.navigateTo(self, Array(occupants.values).first!)
         } else {
             let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChatDetailsViewController") as? ChatDetailsViewController
             vc?.title = "Chat details"
@@ -449,11 +448,9 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         if(data.isEmpty && !attachmentManager.attachments.isEmpty) {
             let attachment = attachmentManager.attachments.first
             if case .image(let i) = attachment {
-                if let imageData = i.jpeg(.lowest) {
-                    let image = UIImage(data: imageData)
-                }
-//                let cubeAttachment: ConnectycubeAttachment = createTempAttachment(path: attachmentData[i]!.path, type: "image")
-//                msg.attachments?.add(cubeAttachment)
+                let cubeAttachment: ConnectycubeAttachment = createTempAttachment(path: attachmentData[i]!.path, type: "image")
+                msg.attachments?.add(cubeAttachment)
+
                 msg.body = "Attachment"
             }
         }
@@ -554,14 +551,6 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            //1 option
-            //                UIPasteboard.general.image = pickedImage
-            //                self.messageInputBar.inputTextView.paste(nil)
-            //2 option
-            //                let imageAttachment = NSTextAttachment()
-            //                imageAttachment.image = pickedImage
-            //                self.messageInputBar.inputTextView.attributedText = NSAttributedString(attachment: imageAttachment)
-            //3 option
             let handled = self.attachmentManager.handleInput(of: pickedImage)
             if !handled {
                 print("pickedImage error")

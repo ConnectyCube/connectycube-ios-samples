@@ -36,23 +36,26 @@ extension ConnectycubeMessage {
 
     func toMessage(_ currentSender: SenderType, _ dialog: ConnectycubeDialog, _ occupants: [Int32: ConnectycubeUser]) -> Message {
         
+        let isCurrentSender = self.senderId == Int32(currentSender.senderId)?.asXPInt()
         let sender: SenderType
-        if(self.senderId == Int32(currentSender.senderId)?.asXPInt()) {
+        if(isCurrentSender) {
             sender = currentSender
         } else {
             let displayName: String? = occupants[self.senderId as! Int32]?.fullName ?? occupants[self.senderId as! Int32]?.login!
             sender = Sender(senderId: self.senderId!.stringValue, displayName: displayName ?? "Not from app")
         }
-
+        
         let status: String = {
-            if isRead(currentSender, dialog) {
+            if(!isCurrentSender) {
+                return ""
+            } else if isRead(currentSender, dialog) {
                 return "Read"
             } else if (isDelivered(currentSender, dialog)) {
                 return "Delivered"
             } else if (isSent(currentSender)) {
                 return "Sent"
             } else {
-                return "Empty"
+                return ""
             }
         }()
         let kind: MessageKind

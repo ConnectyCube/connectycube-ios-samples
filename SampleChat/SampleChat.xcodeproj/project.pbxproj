@@ -168,13 +168,13 @@
 				63B8B5392BE046E900290EE9 /* LoginViewController.swift */,
 				63B8B5512BFBE8F000290EE9 /* UserViewController.swift */,
 				635743202C14D0B3002A66CD /* ChatDetailsViewController.swift */,
+				63AFD2072C166EA400EC5DF1 /* UserSearchViewController.swift */,
+				63AFD20B2C17ACD000EC5DF1 /* UserProfileViewController.swift */,
 				63B8B52B2BDD8E5500290EE9 /* Main.storyboard */,
 				63B8B52E2BDD8E5600290EE9 /* Assets.xcassets */,
 				63B8B54A2BF65CE700290EE9 /* DialogViewCell.xib */,
 				63B8B5302BDD8E5600290EE9 /* LaunchScreen.storyboard */,
 				63B8B5332BDD8E5600290EE9 /* Info.plist */,
-				63AFD2072C166EA400EC5DF1 /* UserSearchViewController.swift */,
-				63AFD20B2C17ACD000EC5DF1 /* UserProfileViewController.swift */,
 			);
 			path = SampleChat;
 			sourceTree = "<group>";

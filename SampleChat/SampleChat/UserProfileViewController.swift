@@ -10,6 +10,13 @@ import ConnectyCube
 
 class UserProfileViewController: UIViewController {
     
+    static func navigateTo(_ controller: UIViewController, _ user: ConnectycubeUser) {
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "UserProfileViewController") as? UserProfileViewController
+        vc?.title = "User Profile"
+        vc?.user = user
+        controller.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
     var user: ConnectycubeUser?
     
     @IBOutlet weak var spinner: UIActivityIndicatorView! {
@@ -18,14 +25,18 @@ class UserProfileViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var avatarImageView: UIImageView! {
+        didSet {
+            avatarImageView.configureAvatar(link: user!.avatar ?? "", itemSize: CGSizeMake(70, 70))
+        }
+    }
+    
     @IBOutlet weak var userNameLabel: UITextField! {
         didSet {
             userNameLabel.text = user?.fullName ?? user?.login
         }
     }
-    
-    @IBOutlet weak var chatBtn: UIButton!
-    
+       
     
     @IBAction func chatAction(_ sender: Any) {
         stopInteraction(spinner, view)

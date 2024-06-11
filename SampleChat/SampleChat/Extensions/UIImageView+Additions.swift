@@ -47,28 +47,13 @@ extension UIImageView {
     }
 }
 
-extension UIImage {
-    enum JPEGQuality: CGFloat {
-        case lowest  = 0
-        case low     = 0.25
-        case medium  = 0.5
-        case high    = 0.75
-        case highest = 1
-    }
-
-    /// Returns the data for the specified image in JPEG format.
-    /// If the image object’s underlying image data has been purged, calling this function forces that data to be reloaded into memory.
-    /// - returns: A data object containing the JPEG data, or nil if there was a problem generating the data. This function may return nil if the image has no data or if the underlying CGImageRef contains data in an unsupported bitmap format.
-    func jpeg(_ jpegQuality: JPEGQuality) -> Data? {
-        return jpegData(compressionQuality: jpegQuality.rawValue)
-    }
-}
-
 extension UIImageView {
-    func configureAvatar(link: String) {
-        let itemSize = CGSizeMake(35, 35)
-        image = UIImage(systemName: "person.fill.badge.plus")
-   
+    func configureAvatar(link: String, itemSize: CGSize = CGSizeMake(35, 35)) {
+        if(link.isEmpty) {
+            image = UIImage(systemName: "person.fill")
+            return
+        }
+        image = UIImage()
         UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale)
         let imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height)
         image!.draw(in: imageRect)
@@ -78,7 +63,7 @@ extension UIImageView {
         layer.cornerRadius = (itemSize.width) / 2
         clipsToBounds = true
         
-        downloaded(from: link, placeholder: UIImage(systemName: "person.fill.badge.plus")!)
+        downloaded(from: link, placeholder: UIImage(systemName: "person.fill")!)
     }
 }
 

@@ -33,7 +33,7 @@ class DialogViewController: UIViewController, UITableViewDelegate, UITableViewDa
         dialogsTable.delegate = self
         dialogsTable.dataSource = self
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: " Logout", style: .plain, target: self, action: #selector(action))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: " Logout", style: .plain, target: self, action: #selector(logoutAction))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +41,7 @@ class DialogViewController: UIViewController, UITableViewDelegate, UITableViewDa
         loadDialogs()
     }
     
-    @objc func action (sender:UIButton) {
+    @objc func logoutAction (sender:UIButton) {
         logout()
     }
     
@@ -59,6 +59,7 @@ class DialogViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func logout() {
         Task.init {
         try await ConnectyCube().signOut()
+            UserDefaultsManager.shared.removeCurrentUser()
             ConnectyCube().chat.logout(successCallback: nil)
             navigationController?.popViewController(animated: true)
         }

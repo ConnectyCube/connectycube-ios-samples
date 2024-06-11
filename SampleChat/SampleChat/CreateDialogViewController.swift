@@ -64,7 +64,7 @@ class CreateDialogViewController: UIViewController, UICollectionViewDelegate, UI
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userCell", for: indexPath) as! UserViewCell
         let user = selectedUsers[indexPath.row]
         cell.userLable.text = user.fullName
-        cell.avatarImage.downloaded(from: user.avatar ?? "", placeholder: UIImage(systemName: "person")!)
+        cell.avatarImageView.downloaded(from: user.avatar ?? "", placeholder: UIImage(systemName: "person")!)
         
         return cell
     }

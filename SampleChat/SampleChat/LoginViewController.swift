@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
     func makeLogin() {
         if(UserDefaultsManager.shared.currentUserExists()) {
             signInUpBtn.isEnabled = false
-            spinner.startAnimating()
+            stopInteraction(spinner, view)
             let user = UserDefaultsManager.shared.getCurrentUser()
             if(isSignedIn(user!)) {
                 loginToChat(user!)
@@ -78,14 +78,15 @@ class LoginViewController: UIViewController {
     }
     
     func signIn(_ user: ConnectycubeUser) {
-        print("createSession on \(Thread.current)")
         ConnectyCube().createSession(user: user, successCallback: { session in
-            NSLog("Created session is " + session.description())
             user.id = session.userId as! Int32
             UserDefaultsManager.shared.saveCurrentUser(user)
             self.loginToChat(user)
-        }, errorCallback: { error in
-            NSLog("error" + error.description())
+        }, errorCallback: { [self] error in
+            startInteraction(spinner, view)
+            AlertBuilder.showErrorAlert(self, "Error", "Log in: \(error.description())")
+            NSLog("signIn error" + error.description())
+            
         })
     }
     
@@ -96,7 +97,7 @@ class LoginViewController: UIViewController {
                 try await ConnectyCube().signIn(user: user)
 
             } catch let error {
-                print("signOut error" + error.localizedDescription)
+                print("signUp error" + error.localizedDescription)
             }
         }
     }
@@ -107,8 +108,10 @@ class LoginViewController: UIViewController {
             NSLog("chat login success")
             startInteraction(spinner, view)
             self.navigateToDialogs()
-        }, errorCallback: { error in
+        }, errorCallback: { [self] error in
             NSLog("chat login error= " + error.description())
+            startInteraction(spinner, view)
+            AlertBuilder.showErrorAlert(self, "Error", "Log in: \(error.description())")
         }, resource: ConnectycubeSettings().chatDefaultResource)
     }
     
