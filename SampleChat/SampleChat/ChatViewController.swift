@@ -14,11 +14,12 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     static func navigateTo(_ controller: UIViewController, _ dialog: ConnectycubeDialog) {
         let vc = ChatViewController(dialog)
-        vc.navigationItem.title = dialog.name
+        vc.navigationItem.prompt = dialog.name
         controller.navigationController?.pushViewController(vc, animated: true)
     }
     
     var currentDialog: ConnectycubeDialog?
+    var isPrivateChat: Bool = false
     let currentUser: ConnectycubeUser = ConnectycubeSessionManager().activeSession!.user!
     var currentSender: SenderType = Sender(senderId: String(ConnectycubeSessionManager().activeSession!.user!.id), displayName: (ConnectycubeSessionManager().activeSession!.user!.fullName ?? ConnectycubeSessionManager().activeSession!.user!.login)!)
     
@@ -29,7 +30,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         return manager
     }()
     
-    var attachmentData = [UIImage: URL]()
+    var attachmentImageData = [UIImage: URL]()
     
     var typingTimer = Timer()
 
@@ -43,8 +44,9 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     var messageStatusListener = ConnectycubeMessageStatusListenerImpl()
 
     init(_ dialog: ConnectycubeDialog) {
-        self.currentDialog = dialog
         super.init(nibName: nil, bundle: nil)
+        self.currentDialog = dialog
+        isPrivateChat = currentDialog!.type == ConnectycubeDialogType.companion.PRIVATE
         messageListener.chatViewController = self
         messageTypingListener.chatViewController = self
         messageSentListener.chatViewController = self
@@ -62,10 +64,11 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Dialogs", style: .plain, target: self, action: #selector(backToDialogs))
-
+        
+        initBackBtn()
         initTitleChatBtn()
         initResources()
+        configureMessageView()
         configureAvatarView()
         configureMessageCollectionView()
         configureMessageInputBar()
@@ -79,7 +82,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     @objc func navigateToChatInfo() {
         if currentDialog!.type == ConnectycubeDialogType.companion.PRIVATE {
-            UserProfileViewController.navigateTo(self, Array(occupants.values).first!)
+            UserProfileViewController.navigateTo(self, Array(occupants.values).first{$0.id != Int(currentSender.senderId) ?? 0}!)
         } else {
             let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChatDetailsViewController") as? ChatDetailsViewController
             vc?.title = "Chat details"
@@ -87,6 +90,10 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             vc?.loadedUsers = Array(occupants.values)
             self.navigationController?.pushViewController(vc!, animated: true)
         }
+    }
+    
+    func initBackBtn() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backToDialogs))
     }
     
     func initTitleChatBtn() {        
@@ -101,6 +108,17 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         let buttonItem = UIBarButtonItem(customView: containerView)
         buttonItem.width = 30
         navigationItem.rightBarButtonItem = buttonItem
+    }
+    
+    func configureMessageView() {
+        let incomingAlignment = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+        let outgoingAlignment = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
+        if(isPrivateChat) {
+            messagesCollectionView.messagesCollectionViewFlowLayout.setMessageIncomingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .left, textInsets: incomingAlignment))
+            messagesCollectionView.messagesCollectionViewFlowLayout.setMessageIncomingAvatarSize(.zero)
+        }
+        messagesCollectionView.messagesCollectionViewFlowLayout.setMessageOutgoingMessageBottomLabelAlignment(LabelAlignment(textAlignment: .right, textInsets: outgoingAlignment))
+        messagesCollectionView.messagesCollectionViewFlowLayout.setMessageOutgoingAvatarSize(.zero)
     }
     
     func initResources() {
@@ -276,9 +294,13 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         let sender = occupants[Int32(message.sender.senderId)!]
-        avatarView.downloaded(from: sender?.avatar ?? "", placeholder: UIImage(systemName: "person")!)
-        avatarView.isHidden = isNextMessageSameSender(at: indexPath)
-        avatarView.layer.borderWidth = 2
+        if(isPrivateChat) {
+            avatarView.isHidden = true
+        } else {
+            avatarView.downloaded(from: sender?.avatar ?? "", placeholder: UIImage(systemName: "person")!)
+            avatarView.isHidden = isNextMessageSameSender(at: indexPath)
+            avatarView.layer.borderWidth = 2
+        }
     }
 
     func isNextMessageSameSender(at indexPath: IndexPath) -> Bool {
@@ -311,10 +333,14 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
     
     func messageTopLabelAttributedText(for message: MessageType, at _: IndexPath) -> NSAttributedString? {
-        let name = message.sender.displayName
-        return NSAttributedString(
-            string: name,
-            attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+        if(isPrivateChat || message.sender.senderId == currentSender.senderId) {
+            return nil
+        } else {
+            let name = message.sender.displayName
+            return NSAttributedString(
+                string: name,
+                attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+        }
     }
     
     func messageBottomLabelAttributedText(for message: MessageType, at _: IndexPath) -> NSAttributedString? {
@@ -418,7 +444,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         
         inputBar.inputTextView.text = String()
         inputBar.invalidatePlugins()
-        attachmentData.removeAll()
+        attachmentImageData.removeAll()
         // Send button activity animation
         inputBar.sendButton.startAnimating()
         inputBar.inputTextView.placeholder = "Sending..."
@@ -448,9 +474,10 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         if(data.isEmpty && !attachmentManager.attachments.isEmpty) {
             let attachment = attachmentManager.attachments.first
             if case .image(let i) = attachment {
-                let cubeAttachment: ConnectycubeAttachment = createTempAttachment(path: attachmentData[i]!.path, type: "image")
-                msg.attachments?.add(cubeAttachment)
-
+                let (url, _) = compressImage(image: i)
+                let connectycubeAttachment = createTempAttachment(path: url?.path ?? attachmentImageData[i]!.path, type: "image")
+                msg.attachments?.add(connectycubeAttachment)
+                
                 msg.body = "Attachment"
             }
         }
@@ -464,14 +491,10 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     }
     
     func createTempAttachment(path: String, type: String) -> ConnectycubeAttachment {
-        let size = getImageSize(url: path)//FIXME RP
-        
         let attachment = ConnectycubeAttachment()
         attachment.type = type
         attachment.id = String(path.hashValue)
         attachment.url = path
-        attachment.height = Int32(size.height)
-        attachment.width = Int32(size.width)
         return attachment
     }
     
@@ -485,17 +508,6 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         attachment.height = tempAttachment.height
         attachment.width = tempAttachment.width
         return attachment
-    }
-    
-    func getImageSize(url: String) -> CGSize{
-        if let imageSource = CGImageSourceCreateWithURL(URL(string: url)! as CFURL, nil) {
-            if let imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil) as Dictionary? {
-                let pixelWidth = imageProperties[kCGImagePropertyPixelWidth] as! Int
-                let pixelHeight = imageProperties[kCGImagePropertyPixelHeight] as! Int
-                return CGSize(width: pixelWidth, height: pixelHeight)
-            }
-        }
-        return CGSize()
     }
     
     func buildCubeMsg(tempMsg: ConnectycubeMessage) async throws -> ConnectycubeMessage {
@@ -555,7 +567,7 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
             if !handled {
                 print("pickedImage error")
             }
-            attachmentData[pickedImage] = info[UIImagePickerController.InfoKey.imageURL] as? URL
+            attachmentImageData[pickedImage] = info[UIImagePickerController.InfoKey.imageURL] as? URL
         }
         self.dismiss(animated: true, completion: nil)
     }

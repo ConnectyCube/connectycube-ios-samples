@@ -38,6 +38,7 @@
 		63B8B5542C02183500290EE9 /* CreateDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8B5532C02183500290EE9 /* CreateDialogViewController.swift */; };
 		63B8B5562C06041400290EE9 /* UserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8B5552C06041400290EE9 /* UserViewCell.swift */; };
 		63B8B5582C07BD4C00290EE9 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8B5572C07BD4C00290EE9 /* AlertBuilder.swift */; };
+		63E8A56F2C1B5AF100B88695 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8A56E2C1B5AF100B88695 /* UIImage+Additions.swift */; };
 		D46903A401E40010C0731CB2 /* Pods_SampleChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D9DF57B57DA65717DE9690 /* Pods_SampleChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		63B8B5532C02183500290EE9 /* CreateDialogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDialogViewController.swift; sourceTree = "<group>"; };
 		63B8B5552C06041400290EE9 /* UserViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewCell.swift; sourceTree = "<group>"; };
 		63B8B5572C07BD4C00290EE9 /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
+		63E8A56E2C1B5AF100B88695 /* UIImage+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		A42105A76AFBD08940D6B586 /* Pods-SampleChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleChat.debug.xcconfig"; path = "Target Support Files/Pods-SampleChat/Pods-SampleChat.debug.xcconfig"; sourceTree = "<group>"; };
 		D722BB57D4D072153D9F2977 /* Pods-SampleChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleChat.release.xcconfig"; path = "Target Support Files/Pods-SampleChat/Pods-SampleChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +124,7 @@
 				630EC2A22C1102B300202A98 /* UINavigation+Additions.swift */,
 				630EC2A02C11025B00202A98 /* UIImageView+Additions.swift */,
 				630EC29E2C11020F00202A98 /* Connectycube+Additions.swift */,
+				63E8A56E2C1B5AF100B88695 /* UIImage+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				63AFD2022C15D4EA00EC5DF1 /* SpinnerManager.swift in Sources */,
 				630EC2A32C1102B300202A98 /* UINavigation+Additions.swift in Sources */,
 				635743212C14D0B3002A66CD /* ChatDetailsViewController.swift in Sources */,
+				63E8A56F2C1B5AF100B88695 /* UIImage+Additions.swift in Sources */,
 				63B8B54E2BF7F58500290EE9 /* DialogDateFormatter.swift in Sources */,
 				63B8B54B2BF65CE700290EE9 /* DialogViewCell.swift in Sources */,
 				630EC29B2C10E4D000202A98 /* Number+Additions.swift in Sources */,

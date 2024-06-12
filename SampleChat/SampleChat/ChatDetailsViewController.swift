@@ -151,7 +151,7 @@ class ChatDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
         let user = loadedUsers[indexPath.row]
-        cell.textLabel!.text = user.fullName
+        cell.textLabel!.text = user.fullName ?? user.login
         cell.imageView!.configureAvatar(link: user.avatar ?? "")
         cell.accessoryType = .disclosureIndicator
         

@@ -60,7 +60,6 @@ class LoginViewController: UIViewController {
     
     func makeLogin() {
         if(UserDefaultsManager.shared.currentUserExists()) {
-            signInUpBtn.isEnabled = false
             stopInteraction(spinner, view)
             let user = UserDefaultsManager.shared.getCurrentUser()
             if(isSignedIn(user!)) {
@@ -68,8 +67,6 @@ class LoginViewController: UIViewController {
             } else {
                 signIn(user!)
             }
-        } else {
-            signInUpBtn.isEnabled = true
         }
     }
     
@@ -86,7 +83,6 @@ class LoginViewController: UIViewController {
             startInteraction(spinner, view)
             AlertBuilder.showErrorAlert(self, "Error", "Log in: \(error.description())")
             NSLog("signIn error" + error.description())
-            
         })
     }
     
@@ -94,18 +90,18 @@ class LoginViewController: UIViewController {
         Task.init {
             do {
                 try await ConnectyCube().createSession(user: nil)
-                try await ConnectyCube().signIn(user: user)
-
-            } catch let error {
-                print("signUp error" + error.localizedDescription)
+                let newUser = try await ConnectyCube().signUp(user: user)
+                user.id = newUser.id
+                UserDefaultsManager.shared.saveCurrentUser(user)
+                makeLogin()
+            } catch {
+                print("signUp error \(error)")
             }
         }
     }
 
     func loginToChat(_ user: ConnectycubeUser) {
-        print("loginToChat on \(Thread.current)")
         ConnectyCube().chat.login(user: user, successCallback:{ [self] in
-            NSLog("chat login success")
             startInteraction(spinner, view)
             self.navigateToDialogs()
         }, errorCallback: { [self] error in
@@ -116,7 +112,6 @@ class LoginViewController: UIViewController {
     }
     
     func navigateToDialogs() {
-        print("navigateToDialogs on \(Thread.current)")
         let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DialogViewController") as? DialogViewController
         vc?.title = "Dialogs"
         vc?.navigationItem.prompt = ConnectycubeSessionManager().activeSession!.user!.login
