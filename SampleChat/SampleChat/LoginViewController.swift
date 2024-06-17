@@ -95,7 +95,9 @@ class LoginViewController: UIViewController {
                 UserDefaultsManager.shared.saveCurrentUser(user)
                 makeLogin()
             } catch {
-                print("signUp error \(error)")
+                print("signUp error \(error.localizedDescription)")
+                startInteraction(spinner, view)
+                AlertBuilder.showErrorAlert(self, "Error", "Log in: \(error.localizedDescription)")
             }
         }
     }
