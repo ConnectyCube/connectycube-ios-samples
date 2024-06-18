@@ -81,10 +81,10 @@ class DialogViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         var lastMessageDateSent = dialog.lastMessageDateSent
         if (lastMessageDateSent == nil) {
-            lastMessageDateSent = DialogDateFormatter.shared.toTimeStamp(dateString: dialog.createdAt!).asXPLong()
+            lastMessageDateSent = CommonDateFormatter.shared.toTimeStamp(dateString: dialog.createdAt!).asXPLong()
         }
              
-        cell.dateLabel.text = DialogDateFormatter.shared.toString(dateInt: Int(truncating: lastMessageDateSent!))
+        cell.dateLabel.text = CommonDateFormatter.shared.toString(dateInt: Int(truncating: lastMessageDateSent!))
         cell.avatarImageView.downloaded(from: dialog.photo ?? "", placeholder: UIImage(named: "avatar_placeholder_group")!)
         
         if(dialog.unreadMessageCount != nil && dialog.unreadMessageCount as! Int > 0 ) {

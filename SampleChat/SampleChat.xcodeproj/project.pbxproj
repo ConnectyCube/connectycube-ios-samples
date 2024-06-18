@@ -33,7 +33,7 @@
 		63B8B5462BEE817E00290EE9 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8B5452BEE817E00290EE9 /* UserDefaultsManager.swift */; };
 		63B8B54B2BF65CE700290EE9 /* DialogViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8B5492BF65CE700290EE9 /* DialogViewCell.swift */; };
 		63B8B54C2BF65CE700290EE9 /* DialogViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63B8B54A2BF65CE700290EE9 /* DialogViewCell.xib */; };
-		63B8B54E2BF7F58500290EE9 /* DialogDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8B54D2BF7F58500290EE9 /* DialogDateFormatter.swift */; };
+		63B8B54E2BF7F58500290EE9 /* CommonDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8B54D2BF7F58500290EE9 /* CommonDateFormatter.swift */; };
 		63B8B5522BFBE8F000290EE9 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8B5512BFBE8F000290EE9 /* UserViewController.swift */; };
 		63B8B5542C02183500290EE9 /* CreateDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8B5532C02183500290EE9 /* CreateDialogViewController.swift */; };
 		63B8B5562C06041400290EE9 /* UserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8B5552C06041400290EE9 /* UserViewCell.swift */; };
@@ -70,7 +70,7 @@
 		63B8B5452BEE817E00290EE9 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		63B8B5492BF65CE700290EE9 /* DialogViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogViewCell.swift; sourceTree = "<group>"; };
 		63B8B54A2BF65CE700290EE9 /* DialogViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DialogViewCell.xib; sourceTree = "<group>"; };
-		63B8B54D2BF7F58500290EE9 /* DialogDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogDateFormatter.swift; sourceTree = "<group>"; };
+		63B8B54D2BF7F58500290EE9 /* CommonDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDateFormatter.swift; sourceTree = "<group>"; };
 		63B8B5512BFBE8F000290EE9 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		63B8B5532C02183500290EE9 /* CreateDialogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDialogViewController.swift; sourceTree = "<group>"; };
 		63B8B5552C06041400290EE9 /* UserViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewCell.swift; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				63B8B5572C07BD4C00290EE9 /* AlertBuilder.swift */,
-				63B8B54D2BF7F58500290EE9 /* DialogDateFormatter.swift */,
+				63B8B54D2BF7F58500290EE9 /* CommonDateFormatter.swift */,
 				63B8B5452BEE817E00290EE9 /* UserDefaultsManager.swift */,
 				63AFD1FF2C15C5E900EC5DF1 /* UIImagePickerManager.swift */,
 				63AFD2012C15D4EA00EC5DF1 /* SpinnerManager.swift */,
@@ -341,7 +341,7 @@
 				630EC2A32C1102B300202A98 /* UINavigation+Additions.swift in Sources */,
 				635743212C14D0B3002A66CD /* ChatDetailsViewController.swift in Sources */,
 				63E8A56F2C1B5AF100B88695 /* UIImage+Additions.swift in Sources */,
-				63B8B54E2BF7F58500290EE9 /* DialogDateFormatter.swift in Sources */,
+				63B8B54E2BF7F58500290EE9 /* CommonDateFormatter.swift in Sources */,
 				63B8B54B2BF65CE700290EE9 /* DialogViewCell.swift in Sources */,
 				630EC29B2C10E4D000202A98 /* Number+Additions.swift in Sources */,
 				63B8B5542C02183500290EE9 /* CreateDialogViewController.swift in Sources */,

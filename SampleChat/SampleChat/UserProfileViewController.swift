@@ -37,6 +37,11 @@ class UserProfileViewController: UIViewController {
         }
     }
        
+    @IBOutlet weak var lastActivityLabel: UILabel!{
+        didSet {
+            lastActivityLabel.text! +=  CommonDateFormatter.shared.toLastActivityDate(dateString: (user?.lastRequestAt) ?? "0")
+        }
+    }
     
     @IBAction func chatAction(_ sender: Any) {
         stopInteraction(spinner, view)

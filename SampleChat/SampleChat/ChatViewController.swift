@@ -14,7 +14,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     static func navigateTo(_ controller: UIViewController, _ dialog: ConnectycubeDialog) {
         let vc = ChatViewController(dialog)
-        vc.navigationItem.prompt = dialog.name
+        vc.navigationItem.title = dialog.name
         controller.navigationController?.pushViewController(vc, animated: true)
     }
     

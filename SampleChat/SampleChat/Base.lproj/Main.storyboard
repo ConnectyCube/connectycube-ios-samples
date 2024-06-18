@@ -513,9 +513,15 @@
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tDf-gG-qnb" userLabel="User Name">
                                 <rect key="frame" x="148" y="409" width="97" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last seen: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reC-dl-XbT">
+                                <rect key="frame" x="166" y="471.33333333333331" width="61.333333333333343" height="14.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLs-sF-O8W">
                                 <rect key="frame" x="140" y="521.66666666666663" width="113" height="35"/>
                                 <state key="normal" title="Button"/>
@@ -529,6 +535,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="WpS-If-9ov" firstAttribute="centerX" secondItem="Rh9-Xa-JPs" secondAttribute="centerX" id="51J-bA-RFD"/>
+                            <constraint firstItem="reC-dl-XbT" firstAttribute="bottom" secondItem="tDf-gG-qnb" secondAttribute="bottom" constant="30" id="Fjg-w2-Dbf"/>
+                            <constraint firstItem="reC-dl-XbT" firstAttribute="centerX" secondItem="Rh9-Xa-JPs" secondAttribute="centerX" id="QNC-Gs-qSb"/>
                             <constraint firstItem="tDf-gG-qnb" firstAttribute="centerX" secondItem="Rh9-Xa-JPs" secondAttribute="centerX" id="RMf-Sm-e8C"/>
                             <constraint firstItem="tDf-gG-qnb" firstAttribute="centerY" secondItem="Rh9-Xa-JPs" secondAttribute="centerY" id="TWE-dj-tIO"/>
                             <constraint firstItem="tDf-gG-qnb" firstAttribute="top" secondItem="VBb-zi-jux" secondAttribute="bottom" constant="50" id="Uog-MG-E4Y"/>
@@ -540,6 +548,7 @@
                     </view>
                     <connections>
                         <outlet property="avatarImageView" destination="VBb-zi-jux" id="HPJ-6R-cjT"/>
+                        <outlet property="lastActivityLabel" destination="reC-dl-XbT" id="Esx-de-B07"/>
                         <outlet property="spinner" destination="WpS-If-9ov" id="cw0-lI-He7"/>
                         <outlet property="userNameLabel" destination="tDf-gG-qnb" id="2hu-Qd-6J8"/>
                     </connections>
