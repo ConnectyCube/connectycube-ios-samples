@@ -33,7 +33,7 @@ class UserProfileViewController: UIViewController {
     
     @IBOutlet weak var userNameLabel: UITextField! {
         didSet {
-            userNameLabel.text = user?.fullName ?? user?.login
+            userNameLabel.text = user?.login
         }
     }
        

@@ -41,7 +41,7 @@ extension ConnectycubeMessage {
         if(isCurrentSender) {
             sender = currentSender
         } else {
-            let displayName: String? = occupants[self.senderId as! Int32]?.fullName ?? occupants[self.senderId as! Int32]?.login!
+            let displayName: String? = occupants[self.senderId as! Int32]?.login
             sender = Sender(senderId: self.senderId!.stringValue, displayName: displayName ?? "Some user")
         }
         

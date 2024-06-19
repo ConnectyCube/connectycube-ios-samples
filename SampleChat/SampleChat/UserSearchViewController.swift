@@ -12,6 +12,7 @@ class UserSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     
     var loadedUsers: [ConnectycubeUser] = []
     var selectedUsers: [ConnectycubeUser] = []
+    var occupants: [ConnectycubeUser] = []
 
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -41,9 +42,8 @@ class UserSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
         if(searchBar.text?.count ?? 1 <= 3) {
             AlertBuilder.showErrorAlert(self, "Error", "Enter more than 3 charactes")
         } else {
-            loadUsers(username: searchBar.text!, function:{ [self] (users) -> Void in
+            loadUsers(login: searchBar.text!, idsToExclude: occupants.map{$0.id}, function:{ [self] (users) -> Void in
                 loadedUsers.removeAll()
-                selectedUsers.removeAll()
                 loadedUsers.append(contentsOf: users)
                 usersTable.reloadData()
             })
@@ -57,7 +57,7 @@ class UserSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
         let user = loadedUsers[indexPath.row]
-        cell.textLabel!.text = user.fullName
+        cell.textLabel!.text = user.login
         cell.imageView!.configureAvatar(link: user.avatar ?? "")
         cell.accessoryType = selectedUsers.contains(user) ? .checkmark : .none
         return cell
@@ -79,7 +79,7 @@ class UserSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     func navigateToChatDetails() {
         if let vc = navigationController!.viewControllers.last(where: { $0.isKind(of: ChatDetailsViewController.self) }) {
             let vc = vc as! ChatDetailsViewController
-            vc.loadedUsers.append(contentsOf: selectedUsers)
+            vc.occupants.append(contentsOf: selectedUsers)
             vc.addedUsers.append(contentsOf: selectedUsers)
             navigationController!.popToViewController(vc, animated: true)
         }

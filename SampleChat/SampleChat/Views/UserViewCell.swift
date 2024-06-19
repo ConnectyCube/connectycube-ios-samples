@@ -9,6 +9,8 @@ import UIKit
 
 class UserViewCell: UICollectionViewCell {
     
+    var removeUserPressed : (() -> ()) = {}
+    
     @IBOutlet weak var avatarImageView: UIImageView! {
         didSet {
             avatarImageView.layer.masksToBounds = false
@@ -19,5 +21,7 @@ class UserViewCell: UICollectionViewCell {
     
     @IBOutlet weak var userLable: UILabel!
     
-    
+    @IBAction func removeUserAction(_ sender: Any) {
+        removeUserPressed()
+    }
 }

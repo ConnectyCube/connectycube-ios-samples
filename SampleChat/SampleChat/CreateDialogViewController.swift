@@ -9,7 +9,7 @@ import UIKit
 import ConnectyCube
 
 class CreateDialogViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
- 
+    
     var selectedUsers: [ConnectycubeUser] = []
     
     var pickerManager: UIImagePickerManager?
@@ -39,7 +39,7 @@ class CreateDialogViewController: UIViewController, UICollectionViewDelegate, UI
         }
     }
     @IBAction func checkAction(_ sender: Any) {
-        if(checkDialogNameExist)() {
+        if(checkDialogNameExist() && checkSelectedUsers()) {
             createDialog()
         }
     }
@@ -63,15 +63,26 @@ class CreateDialogViewController: UIViewController, UICollectionViewDelegate, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userCell", for: indexPath) as! UserViewCell
         let user = selectedUsers[indexPath.row]
-        cell.userLable.text = user.fullName
+        cell.userLable.text = user.login
         cell.avatarImageView.downloaded(from: user.avatar ?? "", placeholder: UIImage(systemName: "person")!)
-        
+        cell.removeUserPressed = {
+            self.selectedUsers.removeAll{$0 == user}
+            self.userCollection.reloadData()
+        }
         return cell
     }
     
     func checkDialogNameExist() -> Bool {
         if let text = dialogNameLabel.text, text.isEmpty {
             AlertBuilder.showErrorAlert(self, "Error", "Dialog name can't be empty")
+            return false
+        }
+        return true
+    }
+    
+    func checkSelectedUsers() -> Bool {
+        if (selectedUsers.isEmpty) {
+            AlertBuilder.showErrorAlert(self, "Error", "Dialog occupants can't be empty")
             return false
         }
         return true

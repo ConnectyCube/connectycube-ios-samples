@@ -21,7 +21,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     var currentDialog: ConnectycubeDialog?
     var isPrivateChat: Bool = false
     let currentUser: ConnectycubeUser = ConnectycubeSessionManager().activeSession!.user!
-    var currentSender: SenderType = Sender(senderId: String(ConnectycubeSessionManager().activeSession!.user!.id), displayName: (ConnectycubeSessionManager().activeSession!.user!.fullName ?? ConnectycubeSessionManager().activeSession!.user!.login)!)
+    var currentSender: SenderType = Sender(senderId: String(ConnectycubeSessionManager().activeSession!.user!.id), displayName: (ConnectycubeSessionManager().activeSession!.user!.login)!)
     
     open lazy var attachmentManager: AttachmentManager = { [unowned self] in
         let manager = AttachmentManager()
@@ -58,7 +58,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
     
     deinit {
-        print("ChatViewController deinit called")
         deinitChat()
     }
     
@@ -87,7 +86,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChatDetailsViewController") as? ChatDetailsViewController
             vc?.title = "Chat details"
             vc?.currentDialog = currentDialog!
-            vc?.loadedUsers = Array(occupants.values)
+            vc?.occupants = Array(occupants.values)
             self.navigationController?.pushViewController(vc!, animated: true)
         }
     }
@@ -308,9 +307,8 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         return messages[indexPath.section].sender.senderId == messages[indexPath.section + 1].sender.senderId
     }
     
-    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+    func dateCellText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         if indexPath.section % 3 == 0 {
-            print("cellTopLabelAttributedText return NSAttributedString message.sentDate= " + message.sentDate.description)
             return NSAttributedString(
                 string: MessageKitDateFormatter.shared.string(from: message.sentDate),
                 attributes: [
@@ -318,22 +316,15 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
                     NSAttributedString.Key.foregroundColor: UIColor.darkGray,
                 ])
         }
-        print("cellTopLabelAttributedText return nil")
         return nil
     }
     
-    func cellBottomLabelAttributedText(for message: MessageType, at index: IndexPath) -> NSAttributedString? {
-        let status = messages[index.section].status
-        return NSAttributedString(
-                string: status,
-                attributes: [
-                  NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
-                  NSAttributedString.Key.foregroundColor: UIColor.darkGray,
-                ])
+    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        return dateCellText(for: message, at: indexPath)
     }
     
     func messageTopLabelAttributedText(for message: MessageType, at _: IndexPath) -> NSAttributedString? {
-        if(isPrivateChat || message.sender.senderId == currentSender.senderId) {
+        if(isPrivateChat || isFromCurrentSender(message: message)) {
             return nil
         } else {
             let name = message.sender.displayName
@@ -343,37 +334,42 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         }
     }
     
-    func messageBottomLabelAttributedText(for message: MessageType, at _: IndexPath) -> NSAttributedString? {
-        let dateString = formatter.string(from: message.sentDate)
+    func messageBottomLabelAttributedText(for message: MessageType, at index: IndexPath) -> NSAttributedString? {
+        let status = messages[index.section].status
         return NSAttributedString(
-            string: dateString,
-            attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
+                string: status,
+                attributes: [
+                  NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
+                  NSAttributedString.Key.foregroundColor: UIColor.darkGray,
+                ])
     }
-    
-    func textCell(for _: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> UICollectionViewCell? {
-        nil
-    }
-    
-    private let formatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter
-    }()
     
     func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 10
+        if(dateCellText(for: message, at: indexPath) == nil) {
+            return 0
+        } else {
+            return 15
+        }
     }
     
     func cellBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 10
+        return 0
     }
     
     func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 15
+        if(isFromCurrentSender(message: message) || isPrivateChat) {
+            return 0
+        } else {
+            return 15
+        }
     }
     
     func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 15
+        if(isFromCurrentSender(message: message) && !messages[indexPath.section].status.isEmpty) {
+            return 15
+        } else {
+            return 0
+        }
     }
     
     class ConnectycubeMessageListenerImpl: ConnectycubeMessageListener {
@@ -420,12 +416,10 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         weak var chatViewController: ChatViewController! = nil
 
         func onMessageDelivered(messageId: String, dialogId: String, userId: Int32) {
-            print("onMessageDelivered")
             chatViewController.updateMessageStatus(messageId, status: "Delivered")
         }
 
         func onMessageRead(messageId: String, dialogId: String, userId: Int32) {
-            print("onMessageRead")
             chatViewController.updateMessageStatus(messageId, status: "Read")
         }
     }
@@ -459,7 +453,6 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
                 let message = try await self.buildCubeMsg(tempMsg: msgTemp)
                 ConnectyCube().chat.sendMessage(msg: message)
             } catch let error {
-//                removeMessage() FIXME RP
                 AlertBuilder.showErrorAlert(self, "Error", "create dialog: \(error.localizedDescription)")
             }
         }

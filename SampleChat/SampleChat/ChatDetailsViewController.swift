@@ -11,7 +11,7 @@ import ConnectyCube
 class ChatDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var currentDialog: ConnectycubeDialog?
-    var loadedUsers: [ConnectycubeUser] = []
+    var occupants: [ConnectycubeUser] = []
  
     var pickerManager: UIImagePickerManager?
     
@@ -85,7 +85,7 @@ class ChatDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return loadedUsers.count
+        return occupants.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -106,6 +106,7 @@ class ChatDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     @objc func handleHeaderTap(_ sender: UITapGestureRecognizer) {
         let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "UserSearchViewController") as? UserSearchViewController
         vc?.title = "Users"
+        vc?.occupants = occupants
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
@@ -150,8 +151,8 @@ class ChatDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
-        let user = loadedUsers[indexPath.row]
-        cell.textLabel!.text = user.fullName ?? user.login
+        let user = occupants[indexPath.row]
+        cell.textLabel!.text = user.login
         cell.imageView!.configureAvatar(link: user.avatar ?? "")
         cell.accessoryType = .disclosureIndicator
         
@@ -159,7 +160,7 @@ class ChatDetailsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UserProfileViewController.navigateTo(self, loadedUsers[indexPath.row])
+        UserProfileViewController.navigateTo(self, occupants[indexPath.row])
     }
     
     func canBeUpdated() -> Bool {

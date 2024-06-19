@@ -53,14 +53,12 @@ class UserViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("searchText \(searchBar.text ?? "empty")")
         searchBar.endEditing(true)
         if(searchBar.text?.count ?? 1 <= 3) {
             AlertBuilder.showErrorAlert(self, "Error", "Enter more than 3 charactes")
         } else {
-            loadUsers(username: searchBar.text!, function:{ [self] (users) -> Void in
+            loadUsers(login: searchBar.text!, function:{ [self] (users) -> Void in
                 loadedUsers.removeAll()
-                selectedUsers.removeAll()
                 loadedUsers.append(contentsOf: users)
                 usersTable.reloadData()
             })
@@ -74,7 +72,7 @@ class UserViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
         let user = loadedUsers[indexPath.row]
-        cell.textLabel!.text = user.fullName
+        cell.textLabel!.text = user.login
         cell.imageView!.configureAvatar(link: user.avatar ?? "")
         if(isPrivateChat) {
             cell.accessoryType = .disclosureIndicator
@@ -117,7 +115,6 @@ class UserViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     }
     
     func createDialog() {
-        print("create new dialog \(selectedUsers.count)")
         let dialog = ConnectycubeDialog()
         dialog.type = ConnectycubeDialogType.companion.PRIVATE
         dialog.occupantsIds = ((selectedUsers.map{$0.id} as NSArray).mutableCopy() as! NSMutableArray)
