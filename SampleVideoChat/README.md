@@ -17,7 +17,7 @@ All the samples use iOS ConnectyCube SDK. The following tech integration documen
 
 ## Screenshots
 
-<kbd><img alt="iOS video chat code sample, login" src="https://developers.connectycube.com/docs/_images/code_samples/ios/ios_codesample_video_login.PNG" width="200" /></kbd> <kbd><img alt="iOS video chat code sample, select users" src="https://developers.connectycube.com/docs/_images/code_samples/ios/ios_codesample_video_select_users.PNG" width="200" /></kbd> <kbd><img alt="iOS video chat code sample, video chat" src="https://developers.connectycube.com/docs/_images/code_samples/ios/ios_codesample_video_video.PNG" width="200" /></kbd>
+<kbd><img alt="iOS video chat code sample, login" src="https://developers.connectycube.com/images/code_samples/ios/ios_codesample_video_login.PNG" width="200" /></kbd> <kbd><img alt="iOS video chat code sample, select users" src="https://developers.connectycube.com/images/code_samples/ios/ios_codesample_video_select_users.PNG" width="200" /></kbd> <kbd><img alt="iOS video chat code sample, video chat" src="https://developers.connectycube.com/images/code_samples/ios/ios_codesample_video_video.PNG" width="200" /></kbd>
 
 ## Getting Started
 
