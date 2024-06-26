@@ -13,6 +13,10 @@ Project contains the following features implemented:
 - Last seen
 - User / Group profile
 
+## Screenshots 
+
+<kbd><img alt="iOS chat code sample, login" src="https://developers.connectycube.com/images/code_samples/reactnative/reactnative_codesample_chat_chats.jpg" width="200" /></kbd> <kbd><img alt="iOS chat code sample, select users" src="https://developers.connectycube.com/images/code_samples/reactnative/reactnative_codesample_chat_chat.jpg" width="200" /></kbd> <kbd><img alt="iOS chat code sample, chat screen" src="https://developers.connectycube.com/images/code_samples/reactnative/reactnative_codesample_chat_profile.jpg" width="200" /></kbd>
+
 ## Documentation
 
 All the samples use iOS ConnectyCube SDK. The following tech integration documentation is available:
