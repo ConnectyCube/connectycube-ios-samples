@@ -9,37 +9,37 @@ import UIKit
 import ConnectyCube
 
 class LoginViewController: UIViewController {
-    let APP_ID = ""
-    let AUTH_KEY = ""
-    let AUTH_SECRET = ""
+    let APP_ID = "REPLACE_APP_ID"
+    let AUTH_KEY = "REPLACE_APP_AUTH_KEY"
+    let AUTH_SECRET = "REPLACE_APP_AUTH_SECRET"
     
     @IBOutlet var tableView: UITableView!
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     let user1: ConnectycubeUser = ConnectycubeUser().apply{
-        $0.login = ""
-        $0.password = ""
-        $0.id = 0
-        $0.fullName = "user1"
+        $0.login = "REPLACE_USER_1_LOGIN"
+        $0.password = "REPLACE_USER_1_PASSWORD"
+        $0.id = Int("REPLACE_USER_1_ID")
+        $0.fullName = "REPLACE_USER_1_FULL_NAME"
     }
     let user2: ConnectycubeUser = ConnectycubeUser().apply{
-        $0.login = ""
-        $0.password = ""
-        $0.id = 0
-        $0.fullName = "user2"
+        $0.login = "REPLACE_USER_2_LOGIN"
+        $0.password = "REPLACE_USER_2_PASSWORD"
+        $0.id = Int("REPLACE_USER_2_ID")
+        $0.fullName = "REPLACE_USER_2_FULL_NAME"
     }
     let user3: ConnectycubeUser = ConnectycubeUser().apply{
-        $0.login = ""
-        $0.password = ""
-        $0.id = 0
-        $0.fullName = "user3"
+        $0.login = "REPLACE_USER_3_LOGIN"
+        $0.password = "REPLACE_USER_3_PASSWORD"
+        $0.id = Int("REPLACE_USER_3_ID")
+        $0.fullName = "REPLACE_USER_3_FULL_NAME"
     }
     let user4: ConnectycubeUser = ConnectycubeUser().apply{
-        $0.login = ""
-        $0.password = ""
-        $0.id = 0
-        $0.fullName = "user4"
+        $0.login = "REPLACE_USER_4_LOGIN"
+        $0.password = "REPLACE_USER_4_PASSWORD"
+        $0.id = Int("REPLACE_USER_4_ID")
+        $0.fullName = "REPLACE_USER_4_FULL_NAME"
     }
     
     var users: Array<ConnectycubeUser> = []
