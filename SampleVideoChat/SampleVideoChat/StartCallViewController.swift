@@ -55,16 +55,6 @@ class StartCallViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    func logout() {
-        spinner.startAnimating()
-        Task.init {
-        try await ConnectyCube().signOut()
-            ConnectyCube().chat.logout(successCallback: nil)
-            spinner.stopAnimating()
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
     func buttonRoundInit(_ button: UIButton, _ title: String) {
         button.layer.cornerRadius = button.frame.height / 2
         button.clipsToBounds = true

@@ -11,7 +11,6 @@ import ConnectyCube
 class LoginViewController: UIViewController {
     let APP_ID = "REPLACE_APP_ID"
     let AUTH_KEY = "REPLACE_APP_AUTH_KEY"
-    let AUTH_SECRET = "REPLACE_APP_AUTH_SECRET"
     
     @IBOutlet var tableView: UITableView!
     
@@ -20,25 +19,25 @@ class LoginViewController: UIViewController {
     let user1: ConnectycubeUser = ConnectycubeUser().apply{
         $0.login = "REPLACE_USER_1_LOGIN"
         $0.password = "REPLACE_USER_1_PASSWORD"
-        $0.id = Int("REPLACE_USER_1_ID")
+        $0.id = Int32("REPLACE_USER_1_ID")!
         $0.fullName = "REPLACE_USER_1_FULL_NAME"
     }
     let user2: ConnectycubeUser = ConnectycubeUser().apply{
         $0.login = "REPLACE_USER_2_LOGIN"
         $0.password = "REPLACE_USER_2_PASSWORD"
-        $0.id = Int("REPLACE_USER_2_ID")
+        $0.id = Int32("REPLACE_USER_2_ID")!
         $0.fullName = "REPLACE_USER_2_FULL_NAME"
     }
     let user3: ConnectycubeUser = ConnectycubeUser().apply{
         $0.login = "REPLACE_USER_3_LOGIN"
         $0.password = "REPLACE_USER_3_PASSWORD"
-        $0.id = Int("REPLACE_USER_3_ID")
+        $0.id = Int32("REPLACE_USER_3_ID")!
         $0.fullName = "REPLACE_USER_3_FULL_NAME"
     }
     let user4: ConnectycubeUser = ConnectycubeUser().apply{
         $0.login = "REPLACE_USER_4_LOGIN"
         $0.password = "REPLACE_USER_4_PASSWORD"
-        $0.id = Int("REPLACE_USER_4_ID")
+        $0.id = Int32("REPLACE_USER_4_ID")!
         $0.fullName = "REPLACE_USER_4_FULL_NAME"
     }
     
@@ -46,7 +45,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ConnectyCube().doInit(applicationId: APP_ID, authorizationKey: AUTH_KEY, authorizationSecret: AUTH_SECRET, connectycubeConfig: nil)
+        ConnectyCube().doInit(applicationId: APP_ID, authorizationKey: AUTH_KEY, connectycubeConfig: nil)
         ConnectycubeSettings().isDebugEnabled = true
         ConnectyCube().chat.enableLogging()
         
@@ -100,7 +99,7 @@ extension LoginViewController: UITableViewDelegate {
     }
     
     func checkCredentials() {
-        if(APP_ID.isEmpty || AUTH_KEY.isEmpty || AUTH_SECRET.isEmpty) {
+        if(APP_ID.isEmpty || AUTH_KEY.isEmpty) {
             assertionFailure("The LoginViewController should contain ConnectyCube credentials")
         }
     }

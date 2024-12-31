@@ -6,6 +6,6 @@ target 'SampleVideoChat' do
   use_frameworks!
 
   # Pods for SampleVideoChat
-  pod 'ConnectyCube', '2.0.0-beta03'
+  pod 'ConnectyCube', '2.0.0'
 
 end

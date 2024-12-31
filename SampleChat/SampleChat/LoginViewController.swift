@@ -89,7 +89,6 @@ class LoginViewController: UIViewController {
     func signUp(_ user: ConnectycubeUser) {
         Task.init {
             do {
-                try await ConnectyCube().createSession(user: nil)
                 let newUser = try await ConnectyCube().signUp(user: user)
                 user.id = newUser.id
                 UserDefaultsManager.shared.saveCurrentUser(user)

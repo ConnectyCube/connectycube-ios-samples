@@ -13,12 +13,11 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     let APP_ID = "REPLACE_APP_ID"
     let AUTH_KEY = "REPLACE_APP_AUTH_KEY"
-    let AUTH_SECRET = "REPLACE_APP_AUTH_SECRET"
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        ConnectyCube().doInit(applicationId: APP_ID, authorizationKey: AUTH_KEY, authorizationSecret: AUTH_SECRET, connectycubeConfig: nil)
+        ConnectyCube().doInit(applicationId: APP_ID, authorizationKey: AUTH_KEY, connectycubeConfig: nil)
         ConnectycubeSettings().isDebugEnabled = true
         ConnectyCube().chat.enableLogging()
         

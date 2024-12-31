@@ -58,7 +58,7 @@ class DialogViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func logout() {
         Task.init {
-        try await ConnectyCube().signOut()
+            try await ConnectyCube().destroySession()
             UserDefaultsManager.shared.removeCurrentUser()
             ConnectyCube().chat.logout(successCallback: nil)
             navigationController?.popViewController(animated: true)
