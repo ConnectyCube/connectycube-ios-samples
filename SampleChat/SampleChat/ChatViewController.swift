@@ -9,6 +9,7 @@ import UIKit
 import InputBarAccessoryView
 import MessageKit
 import ConnectyCube
+import IQKeyboardManagerSwift
 
 class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
     
@@ -169,6 +170,8 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         messageInputBar.leftStackView.alignment = .center
         messageInputBar.setLeftStackViewWidthConstant(to: 50, animated: false)
         messageInputBar.setStackViewItems([attachmentItem], forStack: .left, animated: false)
+  
+        IQKeyboardManager.shared.disabledToolbarClasses.append(ChatViewController.self)
     }
     
     @objc func attachmentPressed() {
@@ -233,7 +236,21 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         }
         
         self.messagesCollectionView.reloadData()
-        self.messagesCollectionView.scrollToLastItem(animated: false)
+        updateCollectionContentInset()
+        self.messagesCollectionView.scrollToLastItem()
+    }
+    
+    //show messages from the bottom
+    func updateCollectionContentInset() {
+        let contentSize = messagesCollectionView.collectionViewLayout.collectionViewContentSize
+        var contentInsetTop = messagesCollectionView.bounds.size.height
+        let offset: CGFloat = messageInputBar.contentView.bounds.height / 2
+
+            contentInsetTop -= contentSize.height
+            if contentInsetTop <= 0 {
+                contentInsetTop = 0
+        }
+        messagesCollectionView.contentInset = UIEdgeInsets(top: contentInsetTop,left: 0,bottom: messageInputBar.contentView.bounds.height + offset, right: 0)
     }
     
     func updateMessageStatus(_ messageId: String, status: String) {

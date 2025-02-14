@@ -26,12 +26,12 @@ class DialogViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var dialogs: [ConnectycubeDialog] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         dialogsTable.register(DialogViewCell.nib(), forCellReuseIdentifier: DialogViewCell.identifier)
         dialogsTable.delegate = self
         dialogsTable.dataSource = self
+        dialogsTable.sectionHeaderTopPadding = 0
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: " Logout", style: .plain, target: self, action: #selector(logoutAction))
     }
@@ -66,15 +66,29 @@ class DialogViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return dialogs.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DialogViewCell.identifier, for: indexPath) as? DialogViewCell else {
             fatalError("The TableView could not dequeue a DialogViewCell in DialogViewController")
         }
-        
-        let dialog = dialogs[indexPath.row] as ConnectycubeDialog
+
+        let dialog = dialogs[indexPath.section] as ConnectycubeDialog
         
         cell.nameLabel.text = dialog.name
         cell.messageLabel.text = dialog.lastMessage
@@ -100,7 +114,7 @@ class DialogViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         //show messages
-        let dialog: ConnectycubeDialog = dialogs[indexPath.row] as ConnectycubeDialog
+        let dialog: ConnectycubeDialog = dialogs[indexPath.section] as ConnectycubeDialog
         ChatViewController.navigateTo(self, dialog)
     }
 }
