@@ -25,6 +25,8 @@ All the samples use iOS ConnectyCube SDK. The following tech integration documen
 
 ## Have an issue?
 
+Join our [Discord](https://discord.gg/wDwbvJmD) for quick answers to your questions!
+
 Got troubles with integration? Create an issue at [Issues page](https://github.com/ConnectyCube/connectycube-ios-samples/issues).
 
 **Want to support our team**:<br>
