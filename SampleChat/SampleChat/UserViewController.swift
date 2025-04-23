@@ -47,6 +47,7 @@ class UserViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        searchBar.placeholder = "Search for user"
         usersTable.register(UITableViewCell.self, forCellReuseIdentifier: "userCell")
         usersTable.delegate = self
         usersTable.dataSource = self
