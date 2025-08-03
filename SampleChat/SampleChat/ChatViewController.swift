@@ -60,6 +60,10 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     deinit {
         deinitChat()
+        Task { @MainActor in
+            IQKeyboardManager.shared.enable = true
+        }
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
     }
     
     override func viewDidLoad() {
@@ -74,6 +78,19 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         configureMessageInputBar()
         
         initChat()
+    }
+
+    
+    @objc func keyboardDidShow(notification: NSNotification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardHeight = keyboardFrame.cgRectValue.height
+            let messageInputBarHeight = self.messageInputBar.contentView.bounds.height
+            let yOffset = keyboardHeight - messageInputBarHeight
+            let currentContentOffsetY = self.messagesCollectionView.contentOffset.y
+            let padding = 5.0
+            
+            self.messagesCollectionView.setContentOffset(CGPoint(x: 0, y: currentContentOffsetY + yOffset + padding), animated: false)
+        }
     }
     
     @objc func backToDialogs() {
@@ -151,7 +168,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messageCellDelegate = self
         
-        scrollsToLastItemOnKeyboardBeginsEditing = true // default false
+        scrollsToLastItemOnKeyboardBeginsEditing = false // default false
         maintainPositionOnInputBarHeightChanged = true // default false
         showMessageTimestampOnSwipeLeft = true // default false
     }
@@ -172,6 +189,9 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         messageInputBar.setStackViewItems([attachmentItem], forStack: .left, animated: false)
   
         IQKeyboardManager.shared.disabledToolbarClasses.append(ChatViewController.self)
+        IQKeyboardManager.shared.enable = false
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
     }
     
     @objc func attachmentPressed() {
@@ -243,14 +263,16 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     //show messages from the bottom
     func updateCollectionContentInset() {
         let contentSize = messagesCollectionView.collectionViewLayout.collectionViewContentSize
-        var contentInsetTop = messagesCollectionView.bounds.size.height
-        let offset: CGFloat = messageInputBar.contentView.bounds.height / 2
-
-            contentInsetTop -= contentSize.height
-            if contentInsetTop <= 0 {
-                contentInsetTop = 0
+        var contentInsetTop = view.safeAreaLayoutGuide.layoutFrame.size.height
+        let contentInsetBottom = messageInputBar.contentView.bounds.height * 1.5
+        let statusBarFrameHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        
+        contentInsetTop -= contentSize.height + statusBarFrameHeight
+        if contentInsetTop <= 0 {
+            contentInsetTop = 0
         }
-        messagesCollectionView.contentInset = UIEdgeInsets(top: contentInsetTop,left: 0,bottom: messageInputBar.contentView.bounds.height + offset, right: 0)
+        
+        messagesCollectionView.contentInset = UIEdgeInsets(top: contentInsetTop, left: 0, bottom: contentInsetBottom, right: 0)
     }
     
     func updateMessageStatus(_ messageId: String, status: String) {
@@ -459,8 +481,8 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         // Send button activity animation
         inputBar.sendButton.startAnimating()
         inputBar.inputTextView.placeholder = "Sending..."
-        // Resign first responder for iPad split view
-        inputBar.inputTextView.resignFirstResponder()
+        // Dismiss the keyboard
+//        inputBar.inputTextView.resignFirstResponder()
         inputBar.sendButton.stopAnimating()
         inputBar.inputTextView.placeholder = "Aa"
         insertMessage(msgTemp.toMessage(currentSender, currentDialog!, occupants))
