@@ -13,12 +13,7 @@ class DialogViewCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    @IBOutlet weak var counterLabel: UILabel!{
-        didSet {
-            counterLabel.layer.cornerRadius = counterLabel.frame.width/2
-            counterLabel.layer.masksToBounds = true
-        }
-    }
+    @IBOutlet weak var counterLabel: CounterLabel!
     
     @IBOutlet weak var avatarImageView: UIImageView! {
         didSet {
