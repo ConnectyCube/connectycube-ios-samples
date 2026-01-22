@@ -228,10 +228,28 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
                 messagesCollectionView.reloadSections([messages.count - 2])
             }
         }, completion: { [weak self] _ in
-            if self?.isLastSectionVisible() == true {
-                self?.messagesCollectionView.scrollToLastItem(animated: true)
+            if self?.isLastSectionVisible() == true {                
+                self?.scrollToLastItem()
             }
         })
+    }
+    
+    func scrollToLastItem() {
+        let padding = 5.0
+        
+        let lastSection = messagesCollectionView.numberOfSections - 1
+        guard lastSection >= 0 else { return }
+        
+        let lastItem = messagesCollectionView.numberOfItems(inSection: lastSection) - 1
+        guard lastItem >= 0 else { return }
+        
+        let indexPath = IndexPath(item: lastItem, section: lastSection)
+        
+        if let attributes = messagesCollectionView.layoutAttributesForItem(at: indexPath) {
+            var rect = attributes.frame
+            rect.size.height += padding
+            messagesCollectionView.scrollRectToVisible(rect, animated: true)
+        }
     }
     
     func isLastSectionVisible() -> Bool {
