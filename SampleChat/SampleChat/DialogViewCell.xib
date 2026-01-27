@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -36,16 +36,25 @@
                         <rect key="frame" x="8" y="2" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="20" id="AnY-na-0D5" userLabel="CounterLabel">
-                        <rect key="frame" x="287" y="22" width="20" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="20" translatesAutoresizingMaskIntoConstraints="NO" id="AnY-na-0D5" userLabel="CounterLabel" customClass="CounterLabel" customModule="SampleChat" customModuleProvider="target">
+                        <rect key="frame" x="275" y="22" width="35" height="22"/>
                         <color key="backgroundColor" name="outgoingMessageBackground"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="Gzm-eg-B9a"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="dvx-Q8-hxZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="11"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ici-Ja-6oD" userLabel="DateLabel">
-                        <rect key="frame" x="274" y="0.0" width="40" height="17"/>
+                        <rect key="frame" x="270" y="0.0" width="40" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="sIr-cC-MRt"/>
                         </constraints>
@@ -55,7 +64,9 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Ici-Ja-6oD" secondAttribute="trailing" constant="6" id="ZJ6-Ek-67I"/>
+                    <constraint firstAttribute="trailing" secondItem="AnY-na-0D5" secondAttribute="trailing" constant="10" id="H6j-Va-deX"/>
+                    <constraint firstItem="AnY-na-0D5" firstAttribute="firstBaseline" secondItem="Ici-Ja-6oD" secondAttribute="baseline" constant="17" symbolType="layoutAnchor" id="SVv-oJ-scz"/>
+                    <constraint firstAttribute="trailing" secondItem="Ici-Ja-6oD" secondAttribute="trailing" constant="10" id="ZJ6-Ek-67I"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

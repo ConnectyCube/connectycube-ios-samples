@@ -15,6 +15,7 @@
 		630EC2A12C11025B00202A98 /* UIImageView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630EC2A02C11025B00202A98 /* UIImageView+Additions.swift */; };
 		630EC2A32C1102B300202A98 /* UINavigation+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630EC2A22C1102B300202A98 /* UINavigation+Additions.swift */; };
 		635743212C14D0B3002A66CD /* ChatDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635743202C14D0B3002A66CD /* ChatDetailsViewController.swift */; };
+		63790EC12D6B6882000F2033 /* CounterLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63790EC02D6B6882000F2033 /* CounterLabel.swift */; };
 		63AFD2002C15C5E900EC5DF1 /* UIImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AFD1FF2C15C5E900EC5DF1 /* UIImagePickerManager.swift */; };
 		63AFD2022C15D4EA00EC5DF1 /* SpinnerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AFD2012C15D4EA00EC5DF1 /* SpinnerManager.swift */; };
 		63AFD2082C166EA400EC5DF1 /* UserSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AFD2072C166EA400EC5DF1 /* UserSearchViewController.swift */; };
@@ -52,6 +53,7 @@
 		630EC2A02C11025B00202A98 /* UIImageView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Additions.swift"; sourceTree = "<group>"; };
 		630EC2A22C1102B300202A98 /* UINavigation+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigation+Additions.swift"; sourceTree = "<group>"; };
 		635743202C14D0B3002A66CD /* ChatDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailsViewController.swift; sourceTree = "<group>"; };
+		63790EC02D6B6882000F2033 /* CounterLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterLabel.swift; sourceTree = "<group>"; };
 		63AFD1FF2C15C5E900EC5DF1 /* UIImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImagePickerManager.swift; sourceTree = "<group>"; };
 		63AFD2012C15D4EA00EC5DF1 /* SpinnerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerManager.swift; sourceTree = "<group>"; };
 		63AFD2072C166EA400EC5DF1 /* UserSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				63B8B5492BF65CE700290EE9 /* DialogViewCell.swift */,
 				63B8B5552C06041400290EE9 /* UserViewCell.swift */,
+				63790EC02D6B6882000F2033 /* CounterLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				63AFD20C2C17ACD000EC5DF1 /* UserProfileViewController.swift in Sources */,
 				630EC2942C10D3DA00202A98 /* AttachmentItem.swift in Sources */,
 				63B8B53A2BE046E900290EE9 /* LoginViewController.swift in Sources */,
+				63790EC12D6B6882000F2033 /* CounterLabel.swift in Sources */,
 				63AFD2082C166EA400EC5DF1 /* UserSearchViewController.swift in Sources */,
 				63B8B5522BFBE8F000290EE9 /* UserViewController.swift in Sources */,
 				630EC29F2C11020F00202A98 /* Connectycube+Additions.swift in Sources */,
